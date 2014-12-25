@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <h1>b.html</h1>
+    <button id="post">post</button>
+    <script>
+        var post = document.getElementById("post");
+        post.onclick = function () {
+            window.parent.postMessage("asdasd",["http://www.yemianzai.com/frontend/case/iframe/postMessage/a.html"]);
+        };
+    </script>
+</body>
+</html>

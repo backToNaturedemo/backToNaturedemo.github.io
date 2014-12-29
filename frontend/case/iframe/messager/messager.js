@@ -55,10 +55,16 @@ window.Messager = (function() {
             msg = msg.slice(prefix.length);
             // 将string转为json
             msg = eval('(' + msg + ')');
-            alert(self.listenFunc.length);
-            for (var i = 0; i < self.listenFunc.length; i++) {
-                self.listenFunc[i](msg);
+            if (supportPostMessage) {
+                for (var i = 0; i < self.listenFunc.length; i++) {
+                    self.listenFunc[i](msg);
+                }
+            } else {
+                for (var i = 0; i < window.navigator.listenFunc.length; i++) {
+                    window.navigator.listenFunc[i](msg);
+                }
             }
+
         };
         if (supportPostMessage) {
             // 绑定事件监听
@@ -105,19 +111,16 @@ window.Messager = (function() {
         } else {
             // 兼容IE 6/7
             var targetFunc = window.navigator[prefix + this.name];
-            alert(window.navigator[prefix + this.name]);
-            alert(typeof targetFunc);
             if (typeof targetFunc == 'function') {
-                alert(11);
-                targetFunc(prefix + msg, window);
+                targetFunc(prefix + msg, this.target);
             }
         }
     };
     Messager.prototype.listen = function(callback) {
-        alert(this.listenFunc.length);
-        this.listenFunc.push(callback);
-        alert(this.listenFunc.length);
-        alert("xxx");
-
+        if (supportPostMessage) {
+            this.listenFunc.push(callback);
+        } else {
+            window.navigator.listenFunc.push(callback);
+        }
     };
     return Messager; })();

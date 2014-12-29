@@ -60,9 +60,7 @@ window.Messager = (function() {
                     self.listenFunc[i](msg);
                 }
             } else {
-                for (var i = 0; i < window.navigator.listenFunc.length; i++) {
-                    window.navigator.listenFunc[i](msg);
-                }
+                window.navigator.listenFunc(msg);
             }
 
         };
@@ -120,7 +118,7 @@ window.Messager = (function() {
         if (supportPostMessage) {
             this.listenFunc.push(callback);
         } else {
-            window.navigator.listenFunc.push(callback);
+            window.navigator.listenFunc = callback;
         }
     };
     return Messager; })();

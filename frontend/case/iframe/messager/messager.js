@@ -114,6 +114,9 @@ window.Messager = (function() {
         }
     };
     Messager.prototype.listen = function(callback) {
+        alert(this.listenFunc.length);
         this.listenFunc.push(callback);
+        alert(this.listenFunc.length);
+
     };
     return Messager; })();

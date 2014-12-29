@@ -14,7 +14,8 @@
 window.Messager = (function() {
     'use strict';
     var prefix = '[PROJECT_NAME]',// 消息前缀
-        supportPostMessage = 'postMessage' in window;
+        supportPostMessage = 'postMessage' in window,
+        supportConsole = 'console' in window;
     /**
      * Messager类.
      * @param {string} projectName - 项目名称.
@@ -39,7 +40,7 @@ window.Messager = (function() {
         var self = this;
         /**
          * 接受到消息后的回调函数.
-         * @param {Object json} msg - 传输的消息.
+         * @param {Object json} msg - 传输的消息，长度限制为10000字节.
          */
         var callback = function(msg) {
             if (typeof msg == 'object' && msg.data) {
@@ -90,8 +91,15 @@ window.Messager = (function() {
         } else {
             throw '请传输json数据';
         }
-        // 传输的信息的长度
-//        var msgLen = msg.length;
+        // 信息长度检测
+        if (msg.length >= 10000) {
+            if (supportConsole) {
+                console.log('数据长度超过限制');
+                return;
+            } else {
+                return;
+            }
+        }
         if (supportPostMessage) {
             // IE8+ 以及现代浏览器支持
             this.target.postMessage(prefix + msg, this.origin);

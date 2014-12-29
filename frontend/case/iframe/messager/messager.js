@@ -4,8 +4,8 @@
  * @description iframe跨域通信简易组件.
  * @author 郭豪
  * @version 1.0
- * 
- * 
+ *
+ *
  */
 
 window.ChangyanMsg = (function(){
@@ -77,10 +77,10 @@ window.ChangyanMsg = (function(){
             target.postMessage(prefix + msg, origin)
         } else {
             // 兼容IE 6/7
-                var targetFunc = window.navigator[prefix + this.name];
-                if ( typeof targetFunc == 'function' ) {
-                    targetFunc(prefix + msg, window);
-                }
+            var targetFunc = window.navigator[prefix + this.name];
+            if ( typeof targetFunc == 'function' ) {
+                targetFunc(prefix + msg, window);
+            }
         }
     };
     ChangyanMsg.prototype.listen = function(callback){

@@ -117,6 +117,7 @@ window.Messager = (function() {
         alert(this.listenFunc.length);
         this.listenFunc.push(callback);
         alert(this.listenFunc.length);
+        alert("xxx");
 
     };
     return Messager; })();

@@ -55,6 +55,7 @@ window.Messager = (function() {
             msg = msg.slice(prefix.length);
             // 将string转为json
             msg = eval('(' + msg + ')');
+            alert(self.listenFunc.length);
             for (var i = 0; i < self.listenFunc.length; i++) {
                 self.listenFunc[i](msg);
             }
@@ -96,8 +97,6 @@ window.Messager = (function() {
             if (supportConsole) {
                 console.log('数据长度超过限制');
                 return;
-            } else {
-                return;
             }
         }
         if (supportPostMessage) {
@@ -106,6 +105,7 @@ window.Messager = (function() {
         } else {
             // 兼容IE 6/7
             var targetFunc = window.navigator[prefix + this.name];
+            alert(window.navigator[prefix + this.name]);
             if (typeof targetFunc == 'function') {
                 targetFunc(prefix + msg, window);
             }

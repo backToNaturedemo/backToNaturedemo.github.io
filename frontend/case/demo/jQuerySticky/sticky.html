@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8"/>
+    <title>sticky</title>
+    <style>
+        .header {
+            height: 100px;
+            background: #1c4864;
+            color: #fff;
+            text-align: center;
+            font-size: 30px;
+            display: inline-block;
+            width: 100%;
+        }
+        .content {
+            height: 2000px;
+            background: red;
+        }
+        .tt {
+            height: 600px;
+            background: #ff0f26;
+        }
+    </style>
+    <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+        <div class="tt"></div>
+
+        <div class ="header st">sticky</div>
+
+<div class="content">
+
+</div>
+<!--<script src="../src/sticky.js"></script>-->
+<script src="./sticky-new.js"></script>
+<script>
+    $(function(){
+        var xx = new Sticky({
+            el: '.st',
+            top: 40,
+            callback: function (status) {
+                if (status) {
+                    alert('吸住了');
+                } else {
+                    alert('放开了');
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>

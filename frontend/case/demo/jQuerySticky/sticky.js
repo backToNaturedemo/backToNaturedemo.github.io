@@ -76,11 +76,49 @@ window.Sticky = (function () {
             margin: el.css("margin")
         };
 
+        /**
+         * 添加占位符
+         * 需要占位符的情况有: position: static or relative，除了 display 不是 block 的情况
+         */
+
+        // _addPlaceholder: function() {
+        //     var need = false,
+        //         el = this.get('el'),
+        //         position = el.css('position');
+
+        //     if (position === 'static' || position === 'relative') {
+        //         need = true;
+        //     }
+        //     if (el.css('display') !== 'block') {
+        //         need = false;
+        //     }
+
+        //     if (need) {
+        //         // 添加占位符
+        //         this._placeholder = $('<div style="visibility:hidden;margin:0;padding:0;"></div>');
+        //         this._placeholder.width(el.outerWidth(true))
+        //             .height(el.outerHeight(true))
+        //             .css('float', el.css('float')).insertAfter(el);
+        //     }
+        // },
+
         // 监听滚动事件
-        var currentScroll;
+        var currentScroll,
+            placeHolder;
         $(target).on("scroll." + sticky_id.toString(),function(){
             currentScroll = (type == 'top')? originTop - value : originTop - $(target).height();
-            if($(target).scrollTop() >= currentScroll){
+            if ($(target).scrollTop() >= currentScroll) {
+                // 添加占位符
+                if ($('.Sticky-Placeholder' + sticky_id).length === 0) {
+                    if ((el.css('position') === 'static' || el.css('position') === 'relative') && el.css('float') === 'none') {
+                        el._placeholder = $('<div style="visibility:hidden;margin:0;padding:0;"></div>');
+                        el._placeholder.width(el.outerWidth(true))
+                        .height(el.outerHeight(true))
+                        .addClass('Sticky-Placeholder' + sticky_id)
+                        .css('float', el.css('float')).insertAfter(el);
+                    }
+                }
+                
                 el.css(fixedStyle);
                 //执行回调,并传入true参数
                 if(!el.data("bindSticky")){
@@ -89,6 +127,11 @@ window.Sticky = (function () {
                 // 标记已经绑定sticky的元素
                 el.data("bindSticky",true);
             } else {
+                if ($('.Sticky-Placeholder' + sticky_id).length === 1) {
+                    if (!((el.css('position') === 'static' || el.css('position') === 'relative') && el.css('float') === 'none')) {
+                        el._placeholder.remove();
+                    }
+                }
                 el.css(el._originStyles);
                 //执行回调,并传入false参数
                 if(el.data("bindSticky")){

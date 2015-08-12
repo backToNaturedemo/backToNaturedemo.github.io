@@ -23,6 +23,17 @@
 			width: 100px;
 			height: 50px;
 		}
+		.xuanze {
+			position: absolute;
+			bottom: 100px;
+			left: 30%;
+			height: 60px;
+			width: 200px;
+		}
+		.recover {
+			position: absolute;
+			bottom: 300px;
+		}
 	</style>
 </head>
 <body>
@@ -36,7 +47,16 @@
 	<button id="click">click</button>
 	<a href="#">13124<a>
 	<div class="zhezhao"></div>
-
+	<button class="recover">恢复遮罩层</button>
+	<select class="xuanze">
+		<option value="touchstart" selected="selected">touchstart</option>
+		<option value="touchmove">touchmove</option>
+		<option value="touchend">touchend</option>
+		<option value="mousedown">mousedown</option>
+		<option value="mousemove">mousemove</option>
+		<option value="mouseenter">mouseenter</option>
+		<option value="click">click</option>
+	</select>
 	<script>
 	var $ = cyanZepto;
 	$(function () {
@@ -47,6 +67,22 @@
 				alert(item.attr('id'));
 			})
 		});
+
+
+		$('.zhezhao').bind('touchstart', function (e) {
+			$('.zhezhao').hide();
+		});
+
+		$('.recover').on('click', function () {
+			$('.zhezhao').show();
+		})
+
+		$('.xuanze').on('change', function () {
+			$('.zhezhao').unbind();
+			$('.zhezhao').bind($(this).val(), function (e) {
+				$('.zhezhao').hide();
+			});
+		});		
 	});
 	
 	</script>

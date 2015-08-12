@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+	 <!--<script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script> -->
+	 <script src="./zepto.min.js"></script>
+	<style type="text/css">
+		.zhezhao {
+			height: 100%;
+			width: 100%;
+			opacity: 0.3;
+			background: #000;
+			position: fixed;
+			top: 0;
+			z-index: 9999999;
+		}
+		button {
+			width: 100px;
+			height: 50px;
+		}
+	</style>
+</head>
+<body>
+	<button id='tap'>tap</button>
+	<button id='touchstart'>touchstart</button>
+	<button id='touchmove'>touchmove</button>
+	<button id='touchend'>touchend</button>
+	<button id='mousedown'>mousedown</button>
+	<button id='mousemove'>mousemove</button>
+	<button id='mouseenter'>mouseenter</button>
+	<button id="click">click</button>
+	<div class="zhezhao"></div>
+	<script>
+	var $ = cyanZepto;
+	$(function () {
+		var button = $('button');
+		button.forEach(function (item) {
+			item = $(item);
+			item.on(item.attr('id'), function (e) {
+				alert(item.attr('id'));
+			})
+		});
+	});
+	
+	</script>
+</body>
+</html>

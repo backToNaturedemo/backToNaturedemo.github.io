@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <title>测试localStroge和seesionStroge</title>
+    <style>
+        button {
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="setLocalStroge()">setLocalStroge</button>
+    <button onclick="getLocalStroge()">getLocalStroge</button>
+    <button onclick="setSeesionStroge()">setSeesionStroge</button>
+    <button onclick="getSeesionStroge()">getSeesionStroge</button>
+    <script>
+        function setLocalStroge() {
+            try {
+                window.localStorage.setItem('a', 12314);
+                alert('成功');
+            } catch(e) {
+                alert(e);
+            }
+        }
+
+        function getLocalStroge() {
+            try {
+                var a = window.localStorage.getItem('a');
+                alert(a);
+            } catch(e) {
+                alert(e);
+            }
+        }
+
+        function setSeesionStroge() {
+            try {
+                window.sessionStorage.setItem('a', 12314);
+                alert('成功');
+            } catch(e) {
+                alert(e);
+            }
+        }
+
+        function getSeesionStroge() {
+            try {
+                var a = window.sessionStorage.getItem('a', 12314);
+                alert(a);
+            } catch(e) {
+                alert(e);
+            }
+        }
+
+    </script>
+</body>
+</html>

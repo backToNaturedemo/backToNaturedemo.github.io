@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>test</title>
+    <script src="http://m.youth.cn/templates/youth/touch/js/zepto.min.js"></script>
+</head>
+<body>
+    <div style="width: 100%;height: 400px;background: #eee;">
+
+    </div>
+    <div id='SOHUCS' sid="cm244346"></div>
+    <script>
+        function GetRequest() {
+            var url = location.search;
+            var theRequest = new Object();
+            if (url.indexOf("?") != -1) {
+                var str = url.substr(1);
+                strs = str.split("&");
+                for(var i = 0; i < strs.length; i ++) {
+                    theRequest[strs[i].split("=")[0]]=unescape(strs[i].split("=")[1]);
+                }
+            }
+            return theRequest;
+        }
+
+        var Request = new Object();
+        Request = GetRequest();
+        var pathname = location.pathname;
+        var host = location.host;
+        var topicid;
+        if (host == 't.m.youth.cn' ){
+            var search = Request['url'];
+            var str1 = search.substr(search.indexOf("_") + 1);
+            var str2 = str1.substr(0,str1.indexOf(".htm"));
+            topicid = 't' + str2;
+        }else if(pathname.substr(0,3) == '/pc'){
+            topicid = 'c' + pathname.substr(11);
+        }else if(pathname == '/comment.shtml'){
+            var search = Request['id'];
+            topicid = 'c' + search;
+        }else{
+            topicid = 'cm' + pathname.substr(9);
+        }
+//        $('#SOHUCS').attr('sid', topicid);
+
+        (function(){
+            var expire_time = parseInt((new Date()).getTime()/(5*60*1000));
+            var head = document.head || document.getElementsByTagName("head")[0] || document.documentElement;
+            var script_version = document.createElement("script"),script_cyan = document.createElement("script");
+            script_version.type = script_cyan.type = "text/javascript";
+            script_version.charset = script_cyan.charset = "utf-8";
+            script_version.onload = function(){
+                script_cyan.id = 'changyan_mobile_js';
+                script_cyan.src = 'http://changyan.itc.cn/upload/mobile/wap-js/changyan_mobile.js?client_id=cyrqcP276&'
+                        + 'conf=prod_a12dadb8024fd2ddc5a86120ebf50c27&version=' + cyan_resource_version;
+                head.insertBefore(script_cyan, head.firstChild);
+            };
+            script_version.src = 'http://changyan.sohu.com/upload/mobile/wap-js/version.js?_='+expire_time
+
+            ;
+            head.insertBefore(script_version, head.firstChild);
+        })();
+    </script>
+
+</body>
+</html>

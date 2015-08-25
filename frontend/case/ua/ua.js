@@ -34,6 +34,7 @@ function getBrowers(ua ,UA) {
         UC: 'UCBrowser',
         weixin: 'MicroMessenger',
         qq: 'MQQBrowser',
+        QQ: 'QQ',
         baidu: 'baiduboxapp',
         360: '360 Aphone Browser',
         sogou: 'SogouMobileBrowser'
@@ -245,31 +246,3 @@ if (typeof process === 'object') {
 }
 
 window.UA.getDescriptorFromUserAgent = getDescriptorFromUserAgent;
-
-var browsers = [
-        'webkit',
-        'trident',
-        'gecko',
-        'presto',
-        'chrome',
-        'safari',
-        'firefox',
-        'ie',
-        'opera'
-    ],
-    documentElement = doc && doc.documentElement,
-    className = '';
-if (documentElement) {
-    for (var i = 0; i < browsers.length; i++) {
-        var key = browsers[i];
-        var v = UA[key];
-        if (v) {
-            className += ' ks-' + key + (parseInt(v, 10) + '');
-            className += ' ks-' + key;
-        }
-    }
-    if (className) {
-        documentElement.className = (documentElement.className + className)
-            .replace(/^[\s\xa0]+|[\s\xa0]+$/g, '');
-    }
-}

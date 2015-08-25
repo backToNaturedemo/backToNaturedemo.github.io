@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>畅言评论-测试-标准版</title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            text-align: left;
+        }
+        input {
+            margin: 50px 100px;
+        }
+    </style>
+</head>
+<body>
+
+    <input id="btn" type="button" value="测试账户登陆" />
+
+    <script type="text/javascript">
+        (function () {
+            var btn = document.getElementById('btn');
+            btn.onclick = function () {
+                var img = new Image();
+                img.src = 'http://changyan.sohu.com/admin/api/user/sso/login?callback=isv_login&cy_user_id=182002183&nickname=%2525E6%25259E%2525AD%2525E4%2525BB%252594&img_url=http%25253A%25252F%25252Fsucimg.itc.cn%25252Favatarimg%25252F182002183_1408604442211_c55&profile_url=&user_id=54893a6f45ce68fccd8bded5&sign=zwgOjzq0HOGX1t5CP0o68fEYh8M%253D&_=1418292769330';
+                btn.setAttribute('value', 'loading');
+                window.setTimeout(function () {
+                    btn.setAttribute('value', '登陆成功');
+                    window.setTimeout(function () {
+                        window.close();
+                    }, 500);
+                }, 1000);
+            };
+        }());
+    </script>
+</body>
+</html>

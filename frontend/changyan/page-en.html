@@ -1,0 +1,64 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>changyan-en</title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            text-align: center;
+        }
+        .doc-wrapper {
+            width: 970px;
+            padding: 0 10px;
+            margin: 0 auto;
+            background: #F5F5F5;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+
+<div class="doc-wrapper">
+    <div style="padding: 100px 445px 400px 445px; font-size: 80px;">文章主体高度</div>
+
+    <!--普通版-->
+    <span id="language"></span><select id="languageChange"><option>选择语言</option><option value="English">英语</option><option value="Korea">朝鲜语</option><option value="Mongolia">蒙古语</option><option value="Japan">日本</option><option value="Philippines">菲律宾</option><option value="Cambodia">柬埔寨</option><option value="Laos">老挝</option><option value="Malaysia">马来西亚</option><option value="Indonesia">印度尼西亚</option><option value="Vietnamese">越南</option><option value="Thailand">泰语</option><option value="Nepal">尼泊尔</option><option value="Tamil">泰米尔语</option><option value="Bangladesh">孟加拉</option><option value="Sinhalese">僧伽罗语</option><option value="Urdu">乌尔都语</option><option value="Hindi">印地语</option><option value="Franch">法语</option><option value="Spain">西班牙语</option><option value="Germany">德语</option><option value="Portugal">葡萄牙</option><option value="Greece">希腊</option><option value="Italy">意大利</option><option value="Albania">阿尔巴尼亚</option><option value="WhiteRussian">白俄</option><option value="Bulgaria">保加利亚</option><option value="Poland">波兰</option><option value="Russian">俄语</option><option value="Czech">捷克</option><option value="Croatia">克罗地亚</option><option value="Serbia">塞尔维亚</option><option value="Ukraine">乌克兰</option><option value="Hungary">匈牙利</option><option value="Rumania">罗马尼亚</option><option value="Arabic">阿拉伯语</option><option value="Farsi">波斯语</option><option value="Rabbinic">希伯莱语</option><option value="Hausa">豪萨语</option><option value="Pushtu">普什图语</option><option value="Swahili">斯瓦希里语</option><option value="Turkey">土耳其</option><option value="World">世界语</option></select>
+    <div id="SOHUCS" sid="yemianzai-changyan-0002"></div>
+    <script type="text/javascript">
+        (function(){
+            window._config = {
+                pageSize: 2
+            };
+
+            var appid = 'cyrAvpLyq',
+                conf = 'prod_14a44184e153225aac09c814509d1426';
+
+            var doc = document,
+                s = doc.createElement('script'),
+                h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+                s.type = 'text/javascript';
+                s.charset = 'utf-8';
+                s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid + '&_=' + (+new Date());
+
+            h.insertBefore(s,h.firstChild);
+            window.SCS_NO_IFRAME = true;
+
+            
+        })();
+        (function () {
+            //语言选择selected
+            var language = window.location.href.split('?')[1] || 'English';
+            document.getElementById('language').innerHTML = language;
+            var languageChange = document.getElementById('languageChange');
+            languageChange.onchange = function () {
+                var index = this.selectedIndex;
+                var oValue = this.options[index].value;
+                window.location.href = 'http://www.yemianzai.com/changyan/page-en.html?' + oValue;
+            }
+        }());
+    </script>
+</div>
+
+</body>
+</html>

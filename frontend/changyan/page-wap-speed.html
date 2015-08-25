@@ -1,0 +1,151 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <title>畅言-wap</title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            font-size: 12px;
+        }
+        .tips {
+            padding: 10px;
+        }
+        .wrapper {
+            display: none;
+            border-bottom: solid 1px #cccccc;
+        }
+        .wrapper .item {
+            padding: 10px;
+            border-top: solid 1px #cccccc;
+        }
+        .wrapper .item .row1 {
+            display: inline-block;
+            width: 180px;
+        }
+        .hidden {
+        }
+    </style>
+</head>
+<body>
+
+<div class="wrapper">
+    <div class="item">
+        <span class="row1">接入IP</span>
+        <span id="ip_data"></span>
+    </div>
+</div>
+
+<div class="tips">
+    准备开始测速...
+</div>
+
+<div class="hidden">
+</div>
+
+<script src="http://js.sohu.com/library/jquery-1.7.1.min.js"> </script>
+<script>
+(function () {
+    var $wrapper = $('.wrapper');
+    $wrapper.show();
+    
+    (function () {
+        $.ajax({
+            url: 'http://changyan.sohu.com/public/api/ip',
+            dataType: 'jsonp',
+            jsonp: 'callback',
+            success: function(data) {
+                $("#ip_data").append(data.ip);
+            }
+        });
+    }());
+    
+    (function () {
+        var $hidden = $('.hidden');
+        
+        var msg = function (s) {
+            $('.tips').html(s);
+        };
+        
+        var loadHtml = function (url, fn) {
+            var t1 = +new Date();
+
+            var iframe = document.createElement("iframe"); 
+            iframe.src = url;
+            $hidden.append(iframe);
+            $(iframe).attr('width', '320').attr('height', '100');
+
+            iframe.onload = function(){
+                var t2 = +new Date();
+                fn(t2 - t1);
+                window.setTimeout(function () {
+                    $hidden.html('');
+                }, 500);
+            };
+        };
+        
+        var list = [
+            {
+                name: '百度H5',
+                url: 'http://www.baidu.com'
+            },
+            {
+                name: '搜狐H5',
+                url: 'http://m.sohu.com/'
+            },
+            {
+                name: '新浪H5',
+                url: 'http://sina.cn/?from=wap'
+            },
+            {
+                name: '腾讯H5',
+                url: 'http://xw.qq.com/'
+            },
+            {
+                name: '畅言首页',
+                url: 'http://changyan.sohu.com'
+            },
+            {
+                name: '畅言load接口',
+                url: 'http://changyan.sohu.com/api/2/topic/load?client_id=cyrkKYELy&topic_url=http%3A%2F%2Fwww.yemianzai.com%2Fchangyan%2Fpage-changyan-wap.html&topic_title=%E7%95%85%E8%A8%80-wap&page_size=30&hot_size=5&_=1429683415600&callback=loadTopicCallBack'
+            },
+            {
+                name: '畅言info接口',
+                url: 'http://changyan.sohu.com/api/2/user/info?client_id=cyrkKYELy&_=1429683415596&callback=user_info_cb'
+            },
+            {
+                name: '畅言主js1',
+                url: 'http://changyan.itc.cn/upload/mobile/wap-js/changyan_mobile.js?client_id=cyrkKYELy&conf=prod_14a44184e153225aac09c814509d1426&version=2015-03-18-14:00'
+            },
+            {
+                name: '畅言主js2',
+                url: 'http://changyan.itc.cn/upload/mobile/??js/lib/zepto.cyan.min.js,js/lib/template-native.js,wap-js/changyan_uploader_mobile.js?version=2015-03-18-14:00'
+            }
+        ];
+
+        var req = function () {
+            var item = list.shift();
+            msg(item.name + ' -> 访问速度...');
+            loadHtml(item.url, function (time) {
+                var $item = $('\
+                    <div class="item">\
+                        <span class="row1">' + item.name + '</span>\
+                        <span>' + time + 'ms</span>\
+                    </div>\
+                ');
+                $wrapper.append($item);
+                
+                if (list.length > 0) {
+                    window.setTimeout(req, 2000);
+                } else {
+                    msg('测试结束.');
+                }
+            });
+        };
+        req();
+    }());
+}());
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <title>畅言-wap</title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            font-size: 16px;
+        }
+        .wrapper {
+            border-bottom: solid 1px #cccccc;
+            margin: 30px 0;
+        }
+        .wrapper .item {
+            padding: 10px;
+            border-top: solid 1px #cccccc;
+        }
+        .wrapper .item .row1 {
+            display: inline-block;
+            width: 180px;
+        }
+    </style>
+</head>
+<body>
+
+<div id="wrapper" class="wrapper">
+</div>
+    
+
+<script>
+var timer = {
+    sid: function (key) {
+        this['t-' + key] = +new Date();
+    },
+    log: function (name, k1, k2) {
+        var ts = this['t-' + k1] - this['t-' + k2];
+
+        var html = '\
+            <div class="item">\
+                <span class="row1">' + name + '</span>\
+                <span>' + ts + 'ms</span>\
+            </div>\
+        ';
+        
+        var el = document.createElement('div');
+        el.innerHTML = html;
+        document.getElementById('wrapper').appendChild(el);
+    }
+};
+timer.sid('START');
+window.changyanWapDebugFn = function (events) {
+    events.on('CUSTOM_EVT_TOPIC_LOAD', function (data) {
+        timer.sid('TOPIC_LOAD');
+        timer.log('数据载入', 'TOPIC_LOAD', 'START');
+    });
+    events.on('CUSTOM_EVT_CBOX_RENDER', function (data) {
+        timer.sid('CBOX_RENDER');
+        timer.log('评论框渲染', 'CBOX_RENDER', 'START');
+    });
+    events.on('CUSTOM_EVT_COMMENTS_LIST_RENDER', function (data) {
+        timer.sid('COMMENTS_LIST_RENDER');
+        timer.log('评论列表渲染', 'COMMENTS_LIST_RENDER', 'START');
+    });
+};
+</script>
+
+
+
+<div id="SOHUCS" sid="yemianzai-changyan-0001-empty"></div>
+<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cyrkKYELy&conf=prod_14a44184e153225aac09c814509d1426"></script>
+<script type="text/javascript">
+    window._config = {
+        page_size: 10,
+        autoRun: false // 默认为true
+    };
+</script>
+<script type="text/javascript">
+    window.cyan.api.ready(function (api) {
+       api.run({ sid: window.Math.random() });
+    });
+</script>
+
+
+
+</body>
+</html>

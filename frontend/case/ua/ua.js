@@ -29,10 +29,36 @@ function getIEVersion(ua) {
     return 0;
 }
 
-function getBrowers(ua) {
+function getBrowers(ua ,UA) {
     var browerArr = {
-        UC: 'UCBrowser'
+        UC: 'UCBrowser',
+        weixin: 'MicroMessenger',
+        qq: 'MQQBrowser',
+        baidu: 'baiduboxapp',
+        360: '360 Aphone Browser',
+        sogou: 'SogouMobileBrowser'
     };
+    var item;
+    for (item in browerArr) {
+        if (ua.match(browerArr[item])) {
+            UA.browser = item;
+
+            var reg = eval('/(' + browerArr[item] + '\\/([\\d.]*)|' + browerArr[item] + ' \\(([\\d.]*)' + ')/');
+            UA.browserVersion = ua.match(reg)[1] || {};
+            var ind;
+            if (UA.browserVersion.indexOf('/') >= 0) {
+                ind = UA.browserVersion.indexOf('/')
+            } else if (UA.browserVersion.indexOf('(') >= 0){
+                ind = UA.browserVersion.indexOf('(')
+            } else {
+                ind = -1;
+            }
+            UA.browserVersion = UA.browserVersion.substring(ind + 1, UA.browserVersion.length);
+            return;
+        }
+    }
+    UA.browser = null;
+    UA.browserVersion = null;
 }
 
 function getDescriptorFromUserAgent(ua) {
@@ -70,7 +96,9 @@ function getDescriptorFromUserAgent(ua) {
         ipod: undef,
         ios: undef,
         android: undef,
-        nodejs: undef
+        nodejs: undef,
+        browser: undef,
+        browserVersion: undef
     };
 
     if (div && div.getElementsByTagName) {
@@ -188,6 +216,20 @@ function getDescriptorFromUserAgent(ua) {
     UA.core = UA.core || core;
     UA.shell = shell;
     UA.ieMode = UA.ie && doc.documentMode || UA.ie;
+
+    getBrowers(ua, UA);
+    if (!UA.browser) {
+        var brArr = ['safari', 'chrome', 'firefox', 'ie', 'opera'], i;
+
+        for (i = 0 ; i < brArr.length ; i++) {
+            if (UA[brArr[i]]) {
+                UA.browser = brArr[i];
+                UA.browserVersion = UA[brArr[i]];
+                return UA;
+            }
+        }
+    }
+
 
     return UA;
 }

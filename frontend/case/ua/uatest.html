@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>ua测试</title>
+</head>
+<body>
+    <script src="ua.js"></script>
+    <script>
+        window.onload = function () {
+            if (UA.os && (UA.os != 'windows' || UA.os != 'linux')) {
+                var os = UA.os, os_version = UA[os], webkit = UA.webkit;
+                alert('os:' + os + ',os_version:' + os_version + ',webkit:' + UA.webkit);
+            }
+        }
+    </script>
+</body>
+</html>

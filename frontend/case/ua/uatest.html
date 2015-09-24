@@ -9,12 +9,12 @@
     <script>
         window.onload = function () {
             var ua = win.navigator && win.navigator.userAgent || '';
+            console.log(UA.browser, UA.browserVersion);
             if (UA.os && (UA.os != 'windows' || UA.os != 'linux')) {
                 var os = UA.os, os_version = UA[os], webkit = UA.webkit, browser = UA.browser, browserVersion = UA.browserVersion;
 
                 alert('系统:' + os + ',系统版本:' + os_version + ',webkit内核版本:' + webkit + '浏览器: ' +  browser + '浏览器版本: ' + browserVersion);
             }
-            alert(UA.shell);
         }
     </script>
 </body>

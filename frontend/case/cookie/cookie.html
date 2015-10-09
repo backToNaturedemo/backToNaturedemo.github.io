@@ -49,7 +49,7 @@
         remove: function(Name, Path, Domain, Secure){
             this.set(Name, '', new Date(0), Path, Domain, Secure);
         },
-        isThirdParty: function () {
+        isThirdParty: function (func) {
             var ajax = function (type, fn) {
                 var data;
                 if (type == 'set') {
@@ -77,7 +77,7 @@
             ajax('remove', function () {
                 ajax('set', function () {
                     ajax('get', function (data) {
-                        alert(JSON.stringify(data));
+                        func(!!data.cookie);
                     })
                 });
             });
@@ -87,7 +87,16 @@
     };
 </script>
 <script type="text/javascript">
-    cookieUtil.isThirdParty();
+    cookieUtil.isThirdParty(function (isNotCookieForbidden) {
+        if (isNotCookieForbidden) {
+            // 没有禁用第三方cookie逻辑
+            alert('没有禁用第三方cookie');
+        } else {
+            // 禁用了第三方cookie逻辑
+            alert('禁用了第三方cookie');
+        }
+
+    });
 </script>
 </body>
 </html>

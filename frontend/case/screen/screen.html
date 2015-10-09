@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <title>宽度测试</title>
+</head>
+<body>
+    <script>
+        /**
+         * Created by wenshui on 14/12/23.
+         */
+        var componet = {
+            /**
+             * @description 获取窗口可视宽高度，显示屏高度,浏览器最大可提供的高度，浏览器外部高度,滚动条顶部距离浏览器顶部的像素
+             */
+            getWin : function () {
+                // 窗口可视高度
+                var eyesWidth = window.innerWidth || document.documentElement.clientWidth;
+                // 显示屏高度
+                var screenWidth = window.screen.Width;
+                // 浏览器最大可提供的高度
+                var browerScreenWidth = window.screen.availWidth;
+                // 浏览器外部高度
+                var browerOuterWidth = window.outerWidth;
+                // 滚动条顶部距离浏览器顶部的像素
+                var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+                
+                var cssWidth = document.body.clientWidth;
+
+                var offsetWidth = document.body.offsetWidth;
+                var test = document.getElementById('test');
+
+                var winInfo = {
+                    eyesWidth: eyesWidth,
+                    screenWidth: screenWidth,
+                    browerScreenWidth: browerScreenWidth,
+                    browerOuterWidth: browerOuterWidth,
+                    scrollTop: scrollTop,
+                    cssWidth: cssWidth,
+                    offsetWidth: offsetWidth,
+                    $width: $(window).width()
+                };
+                return winInfo;
+            }
+        };
+        function js_getDPI() {
+            var arrDPI = new Array();
+            if (window.screen.deviceXDPI != undefined) {
+                arrDPI[0] = window.screen.deviceXDPI;
+                arrDPI[1] = window.screen.deviceYDPI;
+            }
+            else {
+                var tmpNode = document.createElement("DIV");
+                tmpNode.style.cssText = "width:1in;Width:1in;position:absolute;left:0px;top:0px;z-index:99;visibility:hidden";
+                document.body.appendChild(tmpNode);
+                arrDPI[0] = parseInt(tmpNode.offsetWidth);
+                arrDPI[1] = parseInt(tmpNode.offsetWidth);
+                tmpNode.parentNode.removeChild(tmpNode);
+            }
+            return arrDPI;
+        }
+        alert(JSON.stringify(componet.getWin()));
+//        alert(js_getDPI());
+    </script>
+</body>
+</html>

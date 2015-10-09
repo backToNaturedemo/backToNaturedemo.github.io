@@ -1,0 +1,93 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title></title>
+    <style>
+        *{margin:0;padding:0;}
+        input[type='button']{font-size:2.5em;}
+    </style>
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+</head>
+<body>
+
+<script type="text/javascript">
+    var cookieUtil = {
+        //名称、值、有效期(天)、路径、域、安全
+        set: function(Name, Value, Expires, Path, Domain, Secure){
+            var _cookieText = encodeURIComponent(Name) + '=' + encodeURIComponent(Value);
+            if (Expires){
+                var _times = new Date();
+                _times.setTime(_times.getTime() + (Expires * 24 * 3600 * 1000));
+                _cookieText += '; expires=' + _times.toUTCString();
+            }
+            if(Path){
+                _cookieText += '; path=' + Path;
+            }
+            if(Domain){
+                _cookieText += '; domain=' + Domain;
+            }
+            if(Secure){
+                _cookieText == '; secure';
+            }
+            console.log(_cookieText);
+            document.cookie = _cookieText;
+        },
+        get: function(Name){
+            var _cookieArray = document.cookie.split('; ');
+            if(_cookieArray.length === 1){
+                var _cookieStr = _cookieArray.toString();
+                return _cookieStr.slice(Name.length + 1);
+            }else if(_cookieArray.length > 1){
+                var _cookieValArr = [];
+                for(var i = 0; i < _cookieArray.length; i++){
+                    _cookieValArr.push(_cookieArray[i].slice(Name.length + 1));
+                }
+                return _cookieValArr;
+            }
+        },
+        remove: function(Name, Path, Domain, Secure){
+            this.set(Name, '', new Date(0), Path, Domain, Secure);
+        },
+        isThirdParty: function () {
+            var ajax = function (type, fn) {
+                var data;
+                if (type == 'set') {
+                    data = {
+                        setCookie: 'debug-thrid-party=test; expires=Thu Jan 31 2019 00:00:00 GMT+0800 (中国标准时间)'
+                    }
+                } else if (type == 'get') {
+                    data = {};
+                } else if (type == 'remove') {
+                    data = {
+                        setCookie: 'debug-thrid-party=test; expires=' + new Date(0)
+                    }
+                }
+                $.ajax({
+                    url: 'http://changyan.sohu.com/debug/cookie',
+                    dataType: 'jsonp',
+                    data: data,
+                    success: function(data) {
+                        if (fn) {
+                            fn(data);
+                        }
+                    }
+                });
+            };
+            ajax('remove', function () {
+                ajax('set', function () {
+                    ajax('get', function (data) {
+                        alert(JSON.stringify(data));
+                    })
+                });
+            });
+
+
+        }
+    };
+</script>
+<script type="text/javascript">
+    cookieUtil.isThirdParty();
+</script>
+</body>
+</html>

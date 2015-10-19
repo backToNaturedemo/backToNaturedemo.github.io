@@ -1,0 +1,15 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+#cyanData-wrapper {
+    position: fixed;
+    right: 0;
+    width: 20vw;
+    height: 100vh;
+    background: #393939;
+    transition:width 1s;
+    -moz-transition:width 1s; /* Firefox 4 */
+    -webkit-transition:width 1s; /* Safari and Chrome */
+    -o-transition:width 1s; /* Opera */
+}

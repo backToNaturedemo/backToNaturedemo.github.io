@@ -3,13 +3,51 @@
     padding: 0;
 }
 #cyanData-wrapper {
+    font-family: "Microsoft YaHei";
     position: fixed;
     right: 0;
-    width: 20vw;
+    width: 40vw;
     height: 100vh;
+    bottom: 0;
     background: #393939;
+    z-index: 2147483647;
     transition:width 1s;
     -moz-transition:width 1s; /* Firefox 4 */
     -webkit-transition:width 1s; /* Safari and Chrome */
     -o-transition:width 1s; /* Opera */
+    padding: 10px;
+}
+
+#cyanData-wrapper ul {
+    list-style: none;
+}
+
+#cyanData-wrapper .clearfix{
+    overflow:hidden;
+    _zoom:1;
+}
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper {
+    text-align: center;
+    margin: 30px 0;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-hide {
+    color: #fff;
+    text-align: left;
+    cursor: pointer;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-title {
+    color: #fff;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-params {
+    text-align: center;
+    padding: 5px 0;
+}
+
+#cyanData-wrapper .cyanData-header .cyanData-header-title-wrapper .cyanData-header-params li {
+    padding: 5px;
+    float: left;
+    color: #fff;
 }

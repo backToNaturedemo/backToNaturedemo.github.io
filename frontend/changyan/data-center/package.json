@@ -1,0 +1,22 @@
+{
+  "name": "data-center",
+  "version": "1.0.0",
+  "description": "cyData-extension",
+  "main": "injection.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "extension"
+  ],
+  "author": "guohao",
+  "license": "ISC",
+   "devDependencies": {
+        "gulp": "*",
+        "gulp-util": "*",
+        "gulp-uglify": "*",
+        "gulp-concat": "*",
+        "gulp-seajs-combo": "*",
+        "gulp-insert": "*"
+   }
+}

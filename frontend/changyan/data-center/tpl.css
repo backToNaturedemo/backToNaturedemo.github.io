@@ -2,11 +2,14 @@
     margin: 0;
     padding: 0;
 }
+
+
 #cyanData-wrapper {
+    overflow: scroll;
     font-family: "Microsoft YaHei";
     position: fixed;
     right: 0;
-    width: 40vw;
+    width: 70vw;
     height: 100vh;
     bottom: 0;
     background: #393939;
@@ -50,4 +53,14 @@
     padding: 5px;
     float: left;
     color: #fff;
+}
+
+#cyanData-wrapper .cyanData-content .cyanData-content-iframeWrapper .cyanData-content-iframe-title {
+    color: #fff;
+
+}
+
+#cyanData-wrapper .cyanData-content .cyanData-content-iframeWrapper .cyanData-iframe {
+    width: 700px;
+    height: 400px;
 }

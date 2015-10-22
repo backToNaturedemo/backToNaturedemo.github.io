@@ -8,7 +8,7 @@ $(function () {
     var common = (function () {
         var renderFrame = function () {
             $('#cyanData-wrapper').remove();
-            var $cyanDataWrapper = $('<div id="cyanData-wrapper"><a href="'+ data.extensionPath +'background.html">gdgfg</a></div>'),
+            var $cyanDataWrapper = $('<div id="cyanData-wrapper"></div>'),
                 $body = $(window.document.body);
             $body.append($cyanDataWrapper);
         };

@@ -3,6 +3,7 @@
 <head lang="en">
     <meta charset="UTF-8">
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <link rel="stylesheet" href="./lib/jsoneditor.min.css">
     <link rel="stylesheet" href="./tpl.css">
     <title>示例模板</title>
 </head>
@@ -40,12 +41,29 @@
                 <h3 class="cyanData-content-iframe-title">评论数统计</h3>
                 <iframe class="cyanData-iframe" marginwidth="0" marginheight="0" frameborder="0" scrolling="no" allowtransparency="true" src="http://greenskin.cms5.sohu.com/flashChart/DataShow.php?conf=conf/conf.php?chartType=single&pid=294&field=comment_unaudit&itemKey=1&groupKey=0&fKey=4&dataKey=cyruNjvn2&date=20151020&time=0000&interval=1440"></iframe>
             </div>
-        </div>
-        <div class="cyanData-footer">
+
+            <!--前端参数-->
+            <div class="cyanData-content-iframeWrapper">
+                <h3 class="cyanData-content-iframe-title">前端参数</h3>
+                <div id="cyanData-frontend-param" class="cyanData-iframe cyanData-param"></div>
+            </div>
+
+            <!--后端参数-->
+            <div class="cyanData-content-iframeWrapper">
+                <h3 class="cyanData-content-iframe-title">后端参数</h3>
+                <div id="cyanData-backend-param" class="cyanData-iframe cyanData-param"></div>
+            </div>
+
+            <!--data-center-->
+            <div class="cyanData-content-iframeWrapper">
+                <h3 class="cyanData-content-iframe-title">data-center</h3>
+                <div id="cyanData-backend-param" class="cyanData-iframe cyanData-param"></div>
+            </div>
 
         </div>
     </div>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="lib/jsoneditor.min.js"></script>
     <script src="./tpl.js"></script>
 </body>
 </html>

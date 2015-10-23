@@ -19,7 +19,7 @@
             }
         }
         head.appendChild(script);
-    }
+    };
     var loadCss = function (url) {
         var container = document.getElementsByTagName("head")[0];
         var addStyle = document.createElement("link");
@@ -28,11 +28,14 @@
         addStyle.media = "screen";
         addStyle.href = url;
         container.appendChild(addStyle);
-    }
+    };
+
+
     loadCss('http://localhost/data-center-injection/build/init.css');
     loadJs('http://localhost/data-center-injection/src/lib/sea.js',function (){
         loadJs('http://localhost/data-center-injection/build/init.js');
     });
+
 }());
 
 

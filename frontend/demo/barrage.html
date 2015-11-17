@@ -26,12 +26,27 @@
             width: 100%;
             background: pink;
         }
+        .button {
+            background: pink;
+        }
+        .button button{
+            width: 100px;
+            height: 60px;
+        }
     </style>
 </head>
 <body>
+<div class="button">
+    <button id="close">关闭弹幕</button>
+
+    <button id="open">开启弹幕</button>
+
+    <button id="refresh">刷新弹幕</button>
+</div>
+
 <div class="long_height"></div>
 
-<div id="wrapper" class="wrapper">
+
 </div>
 
 <div id="SOHUCS" sid="yemianzai-changyan-0100"></div>
@@ -45,9 +60,28 @@
 
     };
 </script>
-<script type="text/javascript">
-    window.cyan.api.ready(function (api) {
-        api.run({ sid: 'yemianzai-changyan-0100'});
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+
+    $(function () {
+        $('#close').on('click', function () {
+            window.cyan.api.ready(function (api) {
+                api.barrageSwitch('close');
+            });
+        });
+
+        $('#open').on('click', function () {
+            window.cyan.api.ready(function (api) {
+                api.barrageSwitch('open');
+            });
+        });
+
+        $('#refresh').on('click', function () {
+            window.cyan.api.ready(function (api) {
+                api.barrageRefresh();
+            });
+        });
+
     });
 </script>
 </body>

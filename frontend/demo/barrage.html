@@ -1,0 +1,54 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <title>弹幕测试页</title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            font-size: 16px;
+        }
+        .wrapper {
+            border-bottom: solid 1px #cccccc;
+            margin: 30px 0;
+        }
+        .wrapper .item {
+            padding: 10px;
+            border-top: solid 1px #cccccc;
+        }
+        .wrapper .item .row1 {
+            display: inline-block;
+            width: 180px;
+        }
+        .long_height {
+            height: 800px;
+            width: 100%;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="long_height"></div>
+
+<div id="wrapper" class="wrapper">
+</div>
+
+<div id="SOHUCS" sid="yemianzai-changyan-0100"></div>
+<div class="long_height"></div>
+<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cyrkKYELy&conf=prod_14a44184e153225aac09c814509d1426"></script>
+<script type="text/javascript">
+    window._config = {
+        page_size: 5,
+        hot_size: 3, //热门评论条数
+        hot_size_force: 3 // 热门评论条数强制3条
+
+    };
+</script>
+<script type="text/javascript">
+    window.cyan.api.ready(function (api) {
+        api.run({ sid: 'yemianzai-changyan-0100'});
+    });
+</script>
+</body>
+</html>

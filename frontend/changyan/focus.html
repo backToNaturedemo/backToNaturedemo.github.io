@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>呼出键盘测试</title>
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+</head>
+<body>
+    <script src="./cyan.zepto.min.js"></script>
+    <script src="./fastclick.js"></script>
+    <h1>使用fastclick</h1>
+    <textarea id="cy-box" name="cy-cbox" rows="2" class="area-text-wap area-text-b" placeholder="我来说两句..."></textarea>
+    <button id="reply">回复</button>
+    <button id="create">生成textarea</button>
+    <script>
+        var $ = window.cyanZepto;
+        $(function () {
+            var $body = $(window.document.body);
+            FastClick.attach(document.body);
+            $('#reply').on('click', function () {
+                $('#cy-box').focus();
+            });
+            $('#create').on('click', function () {
+                var id = 0;
+                var $textarea = $('<textarea style="display: none;" id="aa'+ id +'"></textarea>');
+                $body.append($textarea);
+                $textarea.show();
+                $textarea.focus();
+            });
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <title>猎豹测试页</title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            font-size: 16px;
+        }
+        .wrapper {
+            border-bottom: solid 1px #cccccc;
+            margin: 30px 0;
+        }
+        .wrapper .item {
+            padding: 10px;
+            border-top: solid 1px #cccccc;
+        }
+        .wrapper .item .row1 {
+            display: inline-block;
+            width: 180px;
+        }
+        .long_height {
+            height: 800px;
+            width: 100%;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="long_height"></div>
+<div id="SOHUCS" sid="guohao-0001"></div>
+<div class="long_height"></div>
+<script type="text/javascript">
+    window._config = {
+        page_size: 2,
+        hot_size: 3, //热门评论条数
+        hot_size_force: 3, // 热门评论条数强制3条
+        next_page: false,
+        show_focus_cbox: true
+    };
+</script>
+<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" 
+    src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cyrwYj23r&conf=prod_5ee226efc33ddcf56e81b59a7cca10e6">
+</script>
+<script type="text/javascript">
+    window.cyan.api.ready(function (api) {
+       api.run({ sid: 'guohao-0001'}); 
+    });
+</script>
+</body>
+</html>

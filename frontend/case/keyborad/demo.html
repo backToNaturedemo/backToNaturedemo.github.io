@@ -12,30 +12,36 @@
             margin: 20px;
         }
         button {
-            width: 20%;
+            width: 30%;
             height: 50px;
         }
     </style>
     <script src="./zepto.min.js"></script>
 </head>
 <body>
-    <div><label for="text">type=text:</label><input type="text" id="text"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="email">type=email:</label><input type="email" id="email"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="date">type=date:</label><input type="date" id="date"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="datetime">type=datetime:</label><input type="datetime" id="datetime"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="datetime-local">type=datetime-local:</label><input type="datetime-local" id="datetime-local"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="month">type=month:</label><input type="month" id="month"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="week">type=week:</label><input type="week" id="week"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="time">type=time:</label><input type="time" id="time"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="number">type=number:</label><input type="number" id="number"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="tel">type=tel:</label><input type="tel" id="tel"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="url">type=url:</label><input type="url" id="url"><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
-    <div><label for="textarea">textarea</label><textarea name="" id="textarea" cols="30" rows="10"></textarea><button class="click">click</button><button class="tap">tap</button><button class="trigger">trigger</button></div>
+    <div><label for="text">type=text:</label><input type="text" id="text"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="email">type=email:</label><input type="email" id="email"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="date">type=date:</label><input type="date" id="date"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="datetime">type=datetime:</label><input type="datetime" id="datetime"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="datetime-local">type=datetime-local:</label><input type="datetime-local" id="datetime-local"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="month">type=month:</label><input type="month" id="month"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="week">type=week:</label><input type="week" id="week"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="time">type=time:</label><input type="time" id="time"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="number">type=number:</label><input type="number" id="number"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="tel">type=tel:</label><input type="tel" id="tel"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="url">type=url:</label><input type="url" id="url"><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
+    <div><label for="textarea">textarea</label><textarea name="" id="textarea" cols="30" rows="10"></textarea><button style="display:none;" class="hide">hide</button><button class="click">click</button><button class="tap">tap</button><button class="triggerHide">triggerHide</button><button class="trigger">trigger</button></div>
     <script>
         var $ = window.cyanZepto;
+        $('.hide').on('click', function () {
+            var $this = $(this);
+            var $put = $this.siblings('input').length? $this.siblings('input') : $this.siblings('textarea');
+            $put.focus();
+        });
         $('.click').on('click', function () {
             var $this = $(this);
             var $put = $this.siblings('input').length? $this.siblings('input') : $this.siblings('textarea');
+
             $put.focus();
         });
         $('.tap').on('rap', function () {
@@ -47,6 +53,12 @@
             var $this = $(this);
             var $put = $this.siblings('input').length? $this.siblings('input') : $this.siblings('textarea');
             var $tb = $this.siblings('.click');
+            $tb.trigger('click');
+        });
+        $('.triggerHide').on('click', function () {
+            var $this = $(this);
+            var $put = $this.siblings('input').length? $this.siblings('input') : $this.siblings('textarea');
+            var $tb = $this.siblings('.hide'); 
             $tb.trigger('click');
         });
     </script>

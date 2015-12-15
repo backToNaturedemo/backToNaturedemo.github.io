@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <title>tips示例</title>
+    <script src="http://js.sohu.com/library/jquery-1.7.1.min.js"></script>
+    <!-- <link rel="stylesheet" href="./tips.css"> -->
+    <script src="./tips.js"></script>
+</head>
+<body>
+    <button id="red">弹出红色tips</button>
+    <button id="green">弹出绿色tips</button>
+    <button id="blue">弹出蓝色tips</button>
+    <script>
+        $(function () {
+            $('#red').on('click', function () {
+                Tips({
+                    theme: 'red',
+                    content: '警告',
+                    callback: function () {
+                        console.log(2323);
+                    }
+                });
+            });
+
+            $('#green').on('click', function () {
+                Tips({
+                    theme: 'green',
+                    content: '成功',
+                    callback: function () {
+                        console.log(2323);
+                    }
+                });
+            });
+
+            $('#blue').on('click', function () {
+                Tips({
+                    theme: 'blue',
+                    content: '提示',
+                    callback: function () {
+                        console.log(2323);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

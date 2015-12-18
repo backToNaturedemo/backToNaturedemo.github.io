@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>畅言模态框测试</title>
+    <link rel="stylesheet" type="text/css" href="./dialog.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+    </style>
+</head>
+<body>
+    <button id="alert">alert</button>
+    <button id="confirm">confirm</button>
+    <button id="popup">popup</button>
+
+    <script src="http://js.sohu.com/library/jquery-1.7.1.min.js"></script>
+    <script src="./dialog.js"></script>
+
+    <script>
+        $(function () {
+            $('#alert').on('click', function () {
+                Dialog.alert(123123);
+            });
+
+            $('#confirm').on('click', function () {
+                Dialog.confirm({
+                    msg: '你确定要删除?',
+                    confirm: function () {
+                        Dialog.alert('删除成功');
+                    }, 
+                    cancel: function () {
+                        Dialog.alert('取消删除');
+                    }
+                });
+            });
+
+            $('#popup').on('click', function () {
+
+                Dialog.dialog({
+                    content: '<h2>我帅不帅！</h2><img width="300" src="http://s2.img.766.com/155/110518/0905/452550.jpg">',
+                    onComplete: function () {
+                        
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

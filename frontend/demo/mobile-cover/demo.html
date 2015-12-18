@@ -13,7 +13,6 @@
         #wraper {
             width: 100vw;
             height: 300vh;
-            background: red;
             text-align: center;
         }
         #hide {
@@ -29,6 +28,8 @@
     <script>
         $(function () {
             var cover = new Cover({
+                background: 'red',
+                opacity: '1.0',
                 onShow: function ($mod) {
                     $mod.find('#hide').on('click', function () {
                         cover.hide();

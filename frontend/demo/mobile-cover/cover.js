@@ -25,11 +25,20 @@
             this.onHide = cfg.onHide;
         }
 
+        if (cfg.background) {
+            this.$el.css('background', cfg.background);
+        }
+
+        if (cfg.opacity) {
+            this.$el.css('background', cfg.background);
+        }
+
         if (!getWraper) {
             this.$el.css({
                 position: "absolute"
             })
         }
+
         this.init();
     };
 

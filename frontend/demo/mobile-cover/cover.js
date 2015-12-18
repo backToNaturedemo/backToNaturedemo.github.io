@@ -12,9 +12,11 @@
     }();
     // 监听渐变结束
     var onTransitionEnd = "onTransitionEnd" in window ? "transitionEnd": "webkitTransitionEnd";
-    var coverClass = 'mobile-cover';
-
-
+    // 加载样式
+    var style = '<style id="mobile-cover-style">.mobile-cover{position:fixed;z-index:999999;margin:0;padding:0;top:0;left:0;right:0;bottom:0;-webkit-transform:translate3d(100%,0,0);transform:translate3d(100%,0,0);-webkit-transition:-webkit-transform .2s cubic-bezier(0,0,.25,1);transition:transform .2s cubic-bezier(0,0,.25,1);display:none;overflow-y:scroll}.mobile-cover.show{-webkit-transform:translate3d(0,0,0);transform:translate3d(0,0,0)}</style>';
+    if (!$('#mobile-cover-style').length) {
+        $('head').append(style);
+    }
     function Cover (cfg) {
         this.$el = $('<div class="mobile-cover"></div>');
         if (cfg.onShow) {

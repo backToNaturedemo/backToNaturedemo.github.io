@@ -5,9 +5,25 @@
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
     <title>cover测试</title>
     <link rel="stylesheet" href="./cover.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wraper {
+            width: 100vw;
+            height: 300vh;
+            background: red;
+            text-align: center;
+        }
+        #hide {
+            height: 100px;
+            width: 200px;
+        }
+    </style>
 </head>
 <body>
-    <button id="test">test</button>
+    <button style="width: 100px;height: 100px;margin: 20px;" id="test">test</button>
     <script src="./zepto.min.js"></script>
     <script src="./cover.js"></script>
     <script>
@@ -24,7 +40,7 @@
             });
 
             $('#test').on('click', function () {
-                cover.setContent('<button id="hide">sdfsdfsdfsd</button>');
+                cover.setContent('<div id="wraper"><button id="hide">隐藏</button><h1>我帅不帅！！</h1><img width="300" src="http://s2.img.766.com/155/110518/0905/452550.jpg"></div>');
                 cover.show();
             });
         });

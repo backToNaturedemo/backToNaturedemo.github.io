@@ -1,0 +1,39 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <title>mobile-dialog测试</title>
+    <link rel="stylesheet" href="./mobile-dialog.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        #wraper {
+            width: 100vw;
+            height: 300vh;
+            text-align: center;
+        }
+        #hide {
+            height: 100px;
+            width: 200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- <div class="cui-mobile-dialog-press"></div> -->
+    <button style="width: 100px;height: 100px;margin: 20px;" id="test">test</button>
+    <script src="./zepto.min.js"></script>
+    <script src="./mobile-dialog.js"></script>
+    <script>
+        $(function () {
+            $('#test').on('click', function () {
+                Dialog({
+                    tpl: '<p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p>'
+                });
+            });
+        });
+    </script>
+</body>
+</html>

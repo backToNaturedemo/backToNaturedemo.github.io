@@ -1,0 +1,34 @@
+.cui-mobile-dialog-press {
+    background: rgba(0,0,0,0.6);
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: 1100;
+    top: 0;
+    left: 0;
+}
+
+.cui-mobile-dialog-wrapper {
+    background: #fff;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    position: fixed;
+    top: 50%;
+    left: 40%;
+    z-index: 11100;
+    -webkit-transform: scale(.815);
+    -ms-transform: scale(.815);
+    transform: scale(.815); 
+}
+
+.cui-mobile-dialog-pre {
+    display: none;
+    opacity: 0;
+}
+
+.cui-mobile-dialog-active {
+    opacity: 1;
+    -webkit-transform: scale(1);
+    -ms-transform: scale(1);
+     transform: scale(1); 
+}

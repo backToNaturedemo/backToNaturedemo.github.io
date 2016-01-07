@@ -6,6 +6,7 @@
     z-index: 1100;
     top: 0;
     left: 0;
+    overflow: hidden;
 }
 
 .cui-mobile-dialog-wrapper {
@@ -13,8 +14,6 @@
     -webkit-transition-duration: .3s;
     transition-duration: .3s;
     position: fixed;
-    top: 50%;
-    left: 40%;
     z-index: 11100;
     -webkit-transform: scale(.815);
     -ms-transform: scale(.815);

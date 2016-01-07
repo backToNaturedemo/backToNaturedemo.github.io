@@ -29,8 +29,11 @@
     <script>
         $(function () {
             $('#test').on('click', function () {
-                Dialog({
-                    tpl: '<p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p>'
+                Dialog.init({
+                    tpl: '<p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p><p>sdgsgdfgr</p>',
+                    onshowed: function ($el) {
+                        console.log($el);
+                    }
                 });
             });
         });

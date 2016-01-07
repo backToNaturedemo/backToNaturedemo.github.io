@@ -37,7 +37,9 @@
                     profile_url: $('#profile_url').val()
                 },
                 success: function (data) {
-                    
+                    if (data.user_id) {
+                        alert('登录成功');
+                    }
                 }
             });
         })

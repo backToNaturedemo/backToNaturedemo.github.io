@@ -1,0 +1,47 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <title>第三方cookie解决登录demo</title>
+    <style>
+        body {
+            text-align: center;
+        }
+        div {
+            margin: 20px;
+        }
+        button {
+            width: 200px;
+            height: 100px;
+        }
+    </style>
+</head>
+<body> 
+    <div><label for="nickname">nickname:</label><input id="nickname" value="朝阳哥" type="text"></div>
+    <div><label for="img_url">img_url:</label><input id="img_url" value="http://s2.img.766.com/155/110518/0905/452550.jpg" type="text"></div>
+    <div><label for="profile_url">profile_url:</label><input id="profile_url" value="http://www.dearhaoge.com/" type="text"></div>
+    <div><button id="login">登录</button></div>
+    <script src="./zepto.min.js"></script>
+    <script type="text/javascript">
+    $(function () {
+        $('#login').on('click', function () {
+            $.ajax({
+                url: 'http://changyan.sohu.com/admin/api/user/sso/login',
+                dataType: 'jsonp',
+                jsonp: 'callback',
+                cache: false,
+                data: {
+                    nickname: $('#nickname').val(),
+                    img_url: $('#img_url').val(),
+                    profile_url: $('#profile_url').val()
+                },
+                success: function (data) {
+                    
+                }
+            });
+        })
+    });
+    </script>
+</body>
+</html>

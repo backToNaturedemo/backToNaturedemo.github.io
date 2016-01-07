@@ -83,15 +83,16 @@ window.changyanWapDebugFn = function (events) {
 
 <div id="SOHUCS" sid="yemianzai-changyan-0001"></div>
 <div class="long_height"></div>
-<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cyrkKYELy&conf=prod_14a44184e153225aac09c814509d1426"></script>
 <script type="text/javascript">
     window._config = {
         page_size: 5,
         hot_size: 3, //热门评论条数
-        hot_size_force: 3 // 热门评论条数强制3条
-
+        hot_size_force: 3, // 热门评论条数强制3条
+        sso: null
     };
 </script>
+<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=cyrkKYELy&conf=prod_14a44184e153225aac09c814509d1426"></script>
+
 <script type="text/javascript">
     window.cyan.api.ready(function (api) {
        api.run({ sid: 'yemianzai-changyan-0001'}); 

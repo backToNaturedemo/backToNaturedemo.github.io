@@ -21,29 +21,43 @@
         },
         // 关闭模态框
         close: function () {
-            $('.cui-mobile-dialog-press').remove();
-            $('.cui-mobile-dialog-wrapper').remove();
+            $('.cui-mobile-dialog-wrapper')
+            .removeClass('cui-mobile-dialog-show')
+            .addClass('cui-mobile-dialog-hide');
+            window.setTimeout(function () {
+                $('.cui-mobile-dialog-press').remove();
+                $('.cui-mobile-dialog-wrapper').remove();
+            }, 300);
         },
         // 渲染模态框
         renderDialog: function (tpl, fn) {
             var $wrapper = $('<div class="cui-mobile-dialog-wrapper"></div>');
+            var $temp = $('<div class="cui-mobile-dialog-wrapper" style="opacity: 0;"></div>');
+            // 计算元素宽高
+            $temp
+            .addClass('cui-mobile-dialog-show')
+            .append(tpl);
+            $body.append($temp);
+            $temp.show();
+            var top = $temp.height() / 2, left = $temp.width() / 2;
+            $temp.remove();
+
             $wrapper
-            .addClass('cui-mobile-dialog-pre')
-            .append(tpl)
-            .show()
-            .removeClass('cui-mobile-dialog-pre');
+            .addClass('cui-mobile-dialog-hide')
+            .append(tpl);
             $body.append($wrapper);
-            var win_height = $(window).height(),win_width = $(window).width(),
-            wrapper_height = $wrapper.height(),wrapper_width = $wrapper.width(),
-            top = (win_height - wrapper_height) / 2, left = (win_width - wrapper_width) / 2;
-            $wrapper.css('left', left).css('top', top);
+            $wrapper.show();
+            $wrapper.css('margin-left', -left).css('margin-top', -top);
 
             if ($.isFunction(fn)) {
                 fn($wrapper);
             }
+            
             window.setTimeout(function () {
-                $wrapper.addClass('cui-mobile-dialog-active');
-            },1);
+                $wrapper
+                .removeClass('cui-mobile-dialog-hide')
+                .addClass('cui-mobile-dialog-show');
+            }, 1);
         }
     };
     window.Dialog = Dialog;

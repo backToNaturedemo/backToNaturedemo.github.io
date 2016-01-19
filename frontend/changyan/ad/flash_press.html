@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="UTF-8" />
+<title>div层覆盖flash，适应
+ie6,ie8,ff</title>
+<style>
+.over_1 { 
+    display:block; 
+    width:300px; 
+    height:250px;
+    line-height:250px;
+    position:absolute; 
+    background: url(about:blank); 
+    left:0;
+    top:0;
+    z-index: 2;
+}
+.over_2 { 
+    display:block; 
+    position:absolute; 
+    left:0;
+    top: 0;
+    width:300px; 
+    height:250px;
+    color:#fff;
+    z-index: 1;
+}
+.wrapper {
+    position: fixed; 
+    bottom: 0; 
+    overflow: visible; 
+    left: 0; 
+    background-color: rgb(228, 228, 228);
+    z-index:2147483647;
+    width: 300px;
+    height: 250px;
+    cursor: pointer;
+}
+</style>
+</head>
+<body>
+<div class="wrapper">
+   
+    <a class="over_1"></a>
+       
+    <div class="over_2"></div>
+   
+    <embed width="300px" height="250px" src="http://d.yoyi.tv/plus/2016/01/07/ca9b1ca89b7434f65386ab5ff7813e8c.swf"
+    wmode="transparent" />
+</div>
+   
+<script src="http://apps.bdimg.com/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>
+    $(function () {
+        $('.over_1').on('click', function () {
+            alert(2323)
+        });
+    });
+</script>
+</div>
+<body>
+</html>

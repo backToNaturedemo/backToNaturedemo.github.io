@@ -7,29 +7,43 @@
 </head>
 <body>
     <input type="text" id='test1'>
+    <label id='result'></label>
     <textarea name="" id="test2" cols="30" rows="10"></textarea>
+    <label id="result1"></label>
     <script src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <script>
         $(function () {
             
             $('#test1').on('keydown', function (e) {
-                alert('keydown' + e.which);
+                var $span = $('<span></span>');
+                $span.text('keydown' + e.which);
+                $('#result').append($span);
             });
             $('#test1').on('keyup', function (e) {
-                alert('keyup' + e.which);
+                var $span = $('<span></span>');
+                $span.text('keyup' + e.which);
+                $('#result').append($span);
             });
             $('#test1').on('keypress', function (e) {
-                alert('keypress' + e.which);
+                var $span = $('<span></span>');
+                $span.text('keypress' + e.which);
+                $('#result').append($span);
             });
 
             $('#test2').on('keydown', function (e) {
-                alert('keydown' + e.which);
+                var $span = $('<span></span>');
+                $span.text('keydown' + e.which);
+                $('#result1').append($span);
             });
             $('#test2').on('keyup', function (e) {
-                alert('keyup' + e.which);
+                var $span = $('<span></span>');
+                $span.text('keyup' + e.which);
+                $('#result1').append($span);
             });
             $('#test2').on('keypress', function (e) {
-                alert('keypress' + e.which);
+                var $span = $('<span></span>');
+                $span.text('keypress' + e.which);
+                $('#result1').append($span);
             });
         });
     </script>

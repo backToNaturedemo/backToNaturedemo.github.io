@@ -1,0 +1,30 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <title>backmodel测试</title>
+</head>
+<body>
+    <script src="../lib/zepto-1.1.6.min.js"></script>
+    <script src="../lib/underscore-1.8.2.min.js"></script>
+    <script src="../lib/backbone-1.1.2.min.js"></script>
+    <script>
+        var Foo = Backbone.Model.extend({  
+            defaults: {
+                name: "hello",  
+                value: "233"  
+            }
+        });
+        var FooList = Backbone.Collection.extend({
+            model: Foo
+        });
+        var foos = new FooList;
+        foos.add([{name:"hello", value:"233"},{name:"world", value:"874"}]);
+        $("body").text(JSON.stringify(foos.at(0)));
+        foos.each(function (foo) {
+            console.log(foo);
+        });
+    </script>
+</body>
+</html>

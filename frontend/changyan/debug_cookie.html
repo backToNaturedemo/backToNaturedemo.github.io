@@ -1,0 +1,109 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>畅言评论-debugcookie-标准版</title>
+    
+</head>
+<body>
+    <div class="cookie-wrapper">
+        <h1>修改cookie</h1>
+        <div>
+            <label for="cookie">例如: http://0d077ef9e74d8.cdn.sohucs.com/cyanfront/cui/cy-dialog/1.0.0/cy-dialog.min.js,http://apps.bdimg.com/libs/backbone.js/1.1.2/backbone-min.js</label>
+            <div>
+                <input id="cookie" type="text" class="cookieinput">
+                <label for="debug">debug:</label>
+                <input id="debug" type="checkbox">
+                <label for="debug_res">debug_res</label>
+                <input id="debug_res" type="checkbox">
+                <button class="modifybutton">修改</button>
+            </div>
+        </div>
+    </div>
+    <script src="http://js.sohu.com/library/jquery-1.7.1.min.js"></script>
+    <script>
+        $(function () {
+            // 获取url
+            var getUrlsList = function () {
+                var url = window.location.href;
+                var reg_url =/^[^\?]+\?([\w\W]+)$/,
+                    reg_para=/([^&=]+)=([\w\W]*?)(&|$)/g, 
+                    arr_url = reg_url.exec( url ),
+                    ret = {};
+                if( arr_url && arr_url[1] ){
+                    var str_para = arr_url[1],result;
+                    while((result = reg_para.exec(str_para)) != null){
+                        ret[result[1]] = result[2];
+                    }
+                }
+                return ret.urls.split(',');
+            };
+
+            console.log(getUrlsList());
+            
+            var request = function (param, fn) {
+                var data;
+                if (param && param.key) {
+                    data = {setCookie: ''+ param.key + '='+window.encodeURIComponent(param.value)+'; expires=Fri Jan 06 2017 10:43:43 GMT 0800 (中国标准时间); path=/; domain=.changyan.sohu.com'};
+                }
+                $.ajax({
+                    url: 'http://changyan.sohu.com/debug/cookie',
+                    dataType: 'jsonp',
+                    jsonp: 'callback',
+                    cache: false,
+                    data: data,
+                    success: function (data) {
+                        if ($.isFunction(fn)) {
+                            fn(data);
+                        }
+                    }
+                });
+            };
+            var getVal = function (str, key) {
+                var reg = eval('/'+ key +'=(.*?);/g');
+                return reg.exec(str)[1] || undefined;
+            };
+
+
+            request(undefined, function (data) {
+                if (!data.cookie) {
+                    return;
+                }
+
+                data.cookie += ';';
+                var extensionsList = getVal(data.cookie, 'debug_extensions');
+                var debug = getVal(data.cookie, 'debug');
+                var debug_res = getVal(data.cookie, 'debug_res');
+                if (debug === 'true') {
+                    $('#debug').prop('checked', 'checked');
+                }
+                if (debug_res === 'true') {
+                    $('#debug_res').prop('checked', 'checked');
+                }
+                $('#cookie').val(extensionsList);
+            });
+
+            $('.modifybutton').on('click', function () {
+                var cookie = $('#cookie').val();
+                var debug = $('#debug').prop('checked') ? 'true' : 'false';
+                var debug_res = $('#debug_res').prop('checked') ? 'true' : 'false';
+
+                request({
+                    key: 'debug_extensions',
+                    value: cookie
+                });
+                request({
+                    key: 'debug',
+                    value: debug
+                });
+                request({
+                    key: 'debug_res',
+                    value: debug_res
+                });
+                
+            });
+        });
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>畅言评论-API测试</title>
+</head>
+<body>
+<script src="../lib/jquery-1.8.3.min.js"></script>
+<script src="../lib/underscore-1.8.2.min.js"></script>
+<script src="../lib/backbone-1.1.2.min.js"></script>
+<div class="doc-wrapper">
+    <!--普通版-->
+    <div id="SOHUCS" sid="yemianzai-changyan-0001"></div>
+    <script type="text/javascript">
+        (function(){
+            var appid = 'cyrkKYELy',
+                conf = 'prod_14a44184e153225aac09c814509d1426';
+            var doc = document,
+                s = doc.createElement('script'),
+                h = doc.getElementsByTagName('head')[0] || doc.head || doc.documentElement;
+                s.type = 'text/javascript';
+                s.charset = 'utf-8';
+                s.src =  'http://assets.changyan.sohu.com/upload/changyan.js?conf='+ conf +'&appid=' + appid + '&_=' + (+new Date());
+
+            h.insertBefore(s,h.firstChild);
+            window.SCS_NO_IFRAME = true;
+        })();
+    </script>
+</div>
+
+</body>
+</html>

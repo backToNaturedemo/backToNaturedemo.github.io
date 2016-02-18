@@ -3,9 +3,50 @@
 <head>
     <meta charset="utf-8" />
     <title>畅言评论-debugcookie-标准版</title>
-    
+    <link rel="stylesheet" type="text/css" href="http://cdn.amazeui.org/amazeui/2.5.0/css/amazeui.min.css">
+    <style type="text/css">
+        /*.am-text-ir {
+                display: block;
+                height: 50px;
+                width: 78px;
+                background: url(http://changyan.kuaizhan.com/platformstatic/images/headerlogo.png) left center no-repeat;
+        }*/
+        .wrapper {
+            padding: 0 10%;
+        }
+    </style>
 </head>
 <body>
+    <header class="am-topbar am-topbar-inverse">
+      <h1 class="am-topbar-brand">
+        <a style="" href="#">畅言mdevp</a>
+      </h1>
+    </header>
+
+    <div class="wrapper">
+        <table class="am-table am-table-bordered am-table-striped am-table-hover am-table-centered">
+            <thead>
+                <tr>
+                    <th>插件url</th>
+                    <th><a href="">全选</a></th>
+                </tr>
+            </thead>
+            <tbody id="table">
+                
+            </tbody>
+        </table>
+        <div class="submit-form">
+            <div class="am-form-group">
+                <label class="am-checkbox-inline">
+                <input type="checkbox" value="option1"> debug</label>
+                <label class="am-checkbox-inline">
+                <input type="checkbox" value="option1"> debug_res</label>
+            </div>
+            <button type="submit" class="am-btn am-btn-primary am-btn-block">提交</button>
+        </div>
+    </div>
+        
+
     <div class="cookie-wrapper">
         <h1>修改cookie</h1>
         <div>
@@ -39,8 +80,20 @@
                 return ret.urls.split(',');
             };
 
-            console.log(getUrlsList());
+            var urls = getUrlsList();
+            var reg = /\{\{url\}\}/g;
+            var tpl = '<tr><td>{{url}}</td><td><input type="checkbox" value="{{url}}"></td></tr>';
+            var table = '';
+
+            urls.forEach(function (item) {
+                table += tpl.replace(reg, item);
+            });
+
+            $('#table').html(table);
+            $('#table').delegate('tr', 'click', function () {
+            });
             
+                    
             var request = function (param, fn) {
                 var data;
                 if (param && param.key) {

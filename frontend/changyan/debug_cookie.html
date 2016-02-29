@@ -45,22 +45,7 @@
             <button type="submit" class="am-btn am-btn-primary am-btn-block">提交</button>
         </div>
     </div>
-        
-
-    <div class="cookie-wrapper">
-        <h1>修改cookie</h1>
-        <div>
-            <label for="cookie">例如: http://0d077ef9e74d8.cdn.sohucs.com/cyanfront/cui/cy-dialog/1.0.0/cy-dialog.min.js,http://apps.bdimg.com/libs/backbone.js/1.1.2/backbone-min.js</label>
-            <div>
-                <input id="cookie" type="text" class="cookieinput">
-                <label for="debug">debug:</label>
-                <input id="debug" type="checkbox">
-                <label for="debug_res">debug_res</label>
-                <input id="debug_res" type="checkbox">
-                <button class="modifybutton">修改</button>
-            </div>
-        </div>
-    </div>
+    
     <script src="http://js.sohu.com/library/jquery-1.7.1.min.js"></script>
     <script>
         $(function () {
@@ -90,9 +75,6 @@
             });
 
             $('#table').html(table);
-            $('#table').delegate('tr', 'click', function () {
-            });
-            
                     
             var request = function (param, fn) {
                 var data;

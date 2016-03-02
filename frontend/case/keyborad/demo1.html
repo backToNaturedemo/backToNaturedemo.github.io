@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>click键盘测试</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta charset="utf-8" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .flex {
+            display: -webkit-box!important;
+            display: -webkit-flex!important;
+            display: -ms-flexbox!important;
+            display: flex!important;
+        }
+        .flex>.cell {
+            -webkit-box-flex: 1;
+            -webkit-flex: 1;
+            -ms-flex: 1;
+            flex: 1;
+            /*width: 0;*/
+            -webkit-flex-basis: 0;
+            -ms-flex-preferred-size: 0;
+            flex-basis: 0;
+            max-width: 100%;
+            display: block;
+            padding: 0!important;
+            position: relative;
+        }
+        img {
+            width: 100%;
+        }
+        .input {
+            width: 100vw;
+            height: 40px;
+            line-height: 40px;
+            font-size: 18px;
+            position: fixed;
+            bottom: 0
+        }
+        .buttons {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 40px;
+        }
+        button {
+            margin: 0px 5vw;
+            margin-bottom: 20vh;
+            outline: none;
+            border: none;
+            width: 40vw;
+            height: 40px;
+            line-height: 40px;
+        }
+        .sure {
+            background: #63b504;
+            color: #fff;
+        }
+        .cancel {
+            background: #eee;
+            color: #000;
+        }
+        .up {
+            height: 40vh;
+            position: static;
+            margin-top: 85px;
+        }
+    </style>
+    <script src="./zepto.min.js"></script>
+</head>
+<body>
+    <div class="wrapper">
+        <img src="./test.png" alt="">
+        <img src="./test1.png" alt="">
+    </div>
+    <div class="comment">
+        <div class="buttons">
+            <button class="sure cell">发表</button>
+            <button class="cancel cell">取消</button>
+        </div>
+        <textarea class="input" placeholder="我来说两句"></textarea>
+    </div>
+    <script type="text/javascript">
+        var $ = cyanZepto;
+        $(function () {
+            var $input = $('.input');
+            $input.on('focus', function () {
+                
+                $('.wrapper').hide();
+                window.setTimeout(function () {
+                    $input.addClass('up');
+                    $('.buttons').addClass('flex');
+                    $(window).scrollTop(0);
+                }, 100);
+            });
+            $input.on('blur', function () {
+                $input.removeClass('up');
+                $('.buttons').removeClass('flex');
+                $('.wrapper').show();
+            });
+
+            $('.cancel').on('rap', function () {
+                $input.removeClass('up');
+                $('.buttons').removeClass('flex');
+                $('.wrapper').show();
+                $input.blur();
+            });
+        });
+    </script>
+</body>
+</html>

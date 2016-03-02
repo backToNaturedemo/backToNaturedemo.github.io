@@ -88,13 +88,12 @@
         $(function () {
             var $input = $('.input');
             $input.on('focus', function () {
-                
                 $('.wrapper').hide();
                 window.setTimeout(function () {
                     $input.addClass('up');
                     $('.buttons').addClass('flex');
                     $(window).scrollTop(0);
-                }, 100);
+                }, 1);
             });
             $input.on('blur', function () {
                 $input.removeClass('up');

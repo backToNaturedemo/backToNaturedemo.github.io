@@ -26,7 +26,7 @@
             color: #3276b1;
             z-index: 100px;
             top: 45%;
-            left: 45%;
+            left: 0;
         }
     </style>
 </head>
@@ -39,9 +39,9 @@
             var originHeight = $(window).height();
             $(window).on('resize', function () {
                 if ($(window).height() < originHeight) {
-                    $('.tips').text('键盘弹出');
+                    $('.tips').html('触发resize键盘<span style="color: red;font-size: 50px;">弹出</span>');
                 } else {
-                    $('.tips').text('键盘收起');
+                    $('.tips').html('触发resize键盘<span style="color: red;font-size: 50px;">收起</span>');
                 }
             });
         });

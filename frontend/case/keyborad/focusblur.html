@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>测试focus和blur</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta charset="utf-8" />
+    <script src="./zepto.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        img {
+            width: 100%;
+        }
+        textarea {
+            width: 100vw;
+            height: 80px;
+            line-height: 80px;
+            font-size: 18px;
+            position: fixed;
+            bottom: 0;
+        }
+        .tips {
+            position: fixed;
+            color: #3276b1;
+            z-index: 100px;
+            top: 45%;
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="tips"></h1>
+    <textarea placeholder="请输入内容"></textarea>
+    <script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
+    <script>
+        $(function () {
+            $('textarea').on('focus', function () {
+                $('.tips').html('触发resize键盘<span style="color: red;font-size: 50px;">弹出</span>');
+            });
+            $('textarea').on('blur', function () {
+                $('.tips').html('触发resize键盘<span style="color: red;font-size: 50px;">收起</span>');
+            });
+        });
+    </script>
+</body>
+</html>

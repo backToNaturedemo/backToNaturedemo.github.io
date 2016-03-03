@@ -4,7 +4,6 @@
     <title>测试focus和blur</title>
     <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta charset="utf-8" />
-    <script src="./zepto.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -32,15 +31,16 @@
 </head>
 <body>
     <h1 class="tips"></h1>
-    <textarea placeholder="请输入内容"></textarea>
-    <script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
+    <textarea id="test" placeholder="请输入内容"></textarea>
+    <script src="./zepto.min.js"></script>
     <script>
+        var $ = cyanZepto;
         $(function () {
-            $('textarea').on('focus', function () {
-                $('.tips').html('触发resize键盘<span style="color: red;font-size: 50px;">弹出</span>');
+            $('#test').on('focus input', function () {
+                $('.tips').html('<span style="color: red;font-size: 50px;">focus</span>');
             });
-            $('textarea').on('blur', function () {
-                $('.tips').html('触发resize键盘<span style="color: red;font-size: 50px;">收起</span>');
+            $('#test').on('blur', function () {
+                $('.tips').html('<span style="color: red;font-size: 50px;">blur</span>');
             });
         });
     </script>

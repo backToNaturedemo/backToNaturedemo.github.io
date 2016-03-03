@@ -33,16 +33,13 @@
 <body>
     <h1 class="tips"></h1>
     <textarea placeholder="请输入内容"></textarea>
-    <script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script>
+    <script src="./zepto.min.js"></script>
     <script>
+    var $ = cyanZepto;
         $(function () {
             var originHeight = $(window).height();
             $(window).on('resize', function () {
-                if ($(window).height() < originHeight) {
-                    $('.tips').html('触发resize键盘<span style="color: red;font-size: 50px;">弹出</span>');
-                } else {
-                    $('.tips').html('触发resize键盘<span style="color: red;font-size: 50px;">收起</span>');
-                }
+                $('.tips').html('触发resize，捕捉到的屏幕高度为<span style="color: red;font-size: 50px;">'+ $(window).height() +'</span>');
             });
         });
     </script>

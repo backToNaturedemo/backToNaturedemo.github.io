@@ -11,26 +11,18 @@
     <script src="./jquery.fancybox-2.1.5.js"></script>
     <script src="./pc-dialog.js"></script>
     <script>
-
         $('#test').on('click', function () {
-            $.fancybox({
-                overlayOpacity : 0.5,
-                overlayColor : '#000',
-                padding: 0,
-                content: '<p>325324534543534543</p>',
-                showCloseButton: false,
-                hideOnOverlayClick: false
-            });
-            window.setTimeout(function (){
-                $.fancybox({
-                    overlayOpacity : 0.5,
-                    overlayColor : '#000',
-                    padding: 0,
-                    content: '<h1>325324534543534543</h1>',
-                    showCloseButton: false,
-                    hideOnOverlayClick: false
-                });
-            }, 500);
+            // $.fancybox({
+            //     overlayShow: true,
+            //     overlayOpacity : 0.5,
+            //     overlayColor : '#000',
+            //     padding: 0,
+            //     content: '<p>325324534543534543</p>',
+            //     showCloseButton: false,
+            //     hideOnOverlayClick: false,
+            //     transitionIn: false
+            // });
+            window.Dialog.show();
         });
     </script>
 </body>

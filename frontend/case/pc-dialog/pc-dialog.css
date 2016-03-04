@@ -1,0 +1,29 @@
+.changyan-overlay-lock {
+    overflow: hidden !important;
+    width: auto;
+}
+
+.changyan-overlay-lock .changyan-overlay {
+    overflow: auto;
+    overflow-y: scroll;
+}
+
+.changyan-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    display: none;
+    z-index: 8010;
+    background: #000;
+    opacity: 0.5;
+    width: auto;
+    height: auto;
+    display: block;
+}
+
+.changyan-overlay-fixed {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+}

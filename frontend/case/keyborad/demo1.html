@@ -87,7 +87,9 @@
         var $ = cyanZepto;
         $(function () {
             var $input = $('.input');
+            var originHieght;
             $input.on('focus', function () {
+                originHieght = $(window).scrollTop();
                 $('.wrapper').hide();
                 window.setTimeout(function () {
                     $input.addClass('up');
@@ -99,6 +101,7 @@
                 $input.removeClass('up');
                 $('.buttons').removeClass('flex');
                 $('.wrapper').show();
+                $(window).scrollTop(originHieght);
             });
 
             $('.cancel').on('rap', function () {

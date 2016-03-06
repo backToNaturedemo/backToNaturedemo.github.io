@@ -27,3 +27,9 @@
     bottom: 0;
     right: 0;
 }
+.changyan-overlay-outer {
+    position: absolute;
+    z-index: 8030;
+    top: 0;
+    left: 0;
+}

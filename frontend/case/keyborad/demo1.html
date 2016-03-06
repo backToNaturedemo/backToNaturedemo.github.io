@@ -72,7 +72,7 @@
     <script src="./zepto.min.js"></script>
 </head>
 <body>
-    <div class="wrapper">
+    <div class="main">
         <img src="./test.png" alt="">
         <img src="./test1.png" alt="">
     </div>
@@ -87,27 +87,29 @@
         var $ = cyanZepto;
         $(function () {
             var $input = $('.input');
-            var originHieght;
+            var originHieght; // 页面呼出键盘前的位置
+
             $input.on('focus', function () {
+                // 纪录页面位置
                 originHieght = $(window).scrollTop();
-                $('.wrapper').hide();
+                $('.main').hide();
+                // 设置延时回到顶部，解决ios错位问题
                 window.setTimeout(function () {
                     $input.addClass('up');
                     $('.buttons').addClass('flex');
                     $(window).scrollTop(0);
                 }, 100);
             });
+            
             $input.on('blur', function () {
                 $input.removeClass('up');
                 $('.buttons').removeClass('flex');
-                $('.wrapper').show();
+                $('.main').show();
+                // 回到原始位置
                 $(window).scrollTop(originHieght);
             });
 
-            $('.cancel').on('rap', function () {
-                $input.removeClass('up');
-                $('.buttons').removeClass('flex');
-                $('.wrapper').show();
+            $('.cancel').on('click', function () {
                 $input.blur();
             });
         });

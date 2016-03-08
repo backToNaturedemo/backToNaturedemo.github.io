@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>呼出键盘解决方案2</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta charset="utf-8" />
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        .lock {
+            overflow: hidden!important;
+            width: auto;
+        }
+        .clearfix:after {
+            content:".";
+            display:block;
+            height:0;
+            clear:both;
+            visibility:hidden;
+        }
+        .input {
+            width: 100%;
+            position: fixed;
+            bottom: 0;
+            font-size: 18px;
+            height: 40px;
+            line-height: 40px;
+            z-index: 9;
+        }
+        img {
+            width: 100%;
+        }
+        .buttons {
+            display: none;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 99;
+        }
+        button {
+            height: 40px;
+            width: 50%;
+            outline: none;
+            border: none;
+            line-height: 40px;
+            float: left;
+        }
+        .sure {
+            background: #63b504;
+            color: #fff;
+        }
+        .cancel {
+            background: #eee;
+            color: #000;
+        }
+        .up {
+            top: 0;
+            bottom: auto;
+            padding: 40px 20px 0;
+            /*padding-top: 40px;*/
+            opacity: 0.7;
+        }
+    </style>
+    <script src="./zepto.min.js"></script>
+</head>
+<body>
+    <div class="main">
+        <img src="./test.png" alt="">
+        <img src="./test1.png" alt="">
+    </div>
+    <div class="comment" style="width: 100%;">
+        <div class="buttons clearfix">
+            <button class="sure">发表</button>
+            <button class="cancel">取消</button>
+        </div>
+        <textarea class="input" placeholder="我来说两句"></textarea>
+    </div>
+    <script type="text/javascript">
+        var $ = cyanZepto;
+        $(function () {
+            var $input = $('.input'), $win = $(window);
+            $input.on('focus', function () {
+                $('.buttons').show();
+                $input.addClass('up');
+                $input.css('height', $win.height() - 40);
+                
+                window.setTimeout(function () {
+                    $win.scrollTop(0);
+                    $('.main').css('height', $win.height())
+                    .addClass('lock');
+                }, 100);
+                $win.on('resize', function () {
+                    $input.css('height', $win.height() - 40);
+                });
+            });
+            var hide = function () {
+                $('.main').css('height', 'auto')
+                .removeClass('lock');
+                $('.buttons').hide();
+                $input.removeClass('up');
+                $input.css('height', 40);
+                $win.off('resize');
+            };
+
+            $('.cancel').on('click', function () {
+                hide();
+            });
+
+            $('.sure').on('click', function () {
+                alert('发表成功');
+                hide();
+            });
+        });
+    </script>
+</body>
+</html>

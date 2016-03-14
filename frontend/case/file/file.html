@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>file API测试</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta charset="utf-8" />
+</head>
+<body>
+    <input type="file" id="input">
+    <script src="../lib/zepto-1.1.6.min.js"></script>
+    <script type="text/javascript">
+        var $input = $('#input');
+        var handleFiles = function () {
+            var files = this.files;
+            for (var i = 0; i < files.length; i++) {
+                var file = files[i];
+                var imageType = /image.*/;
+                
+                if (!file.type.match(imageType)) {
+                    continue;
+                }
+                
+                var $img = $('<img>');
+                $img.file = file;
+                $('body').append($img);
+                var reader = new FileReader();
+                reader.onload = (function(img){
+                    return function(e){
+                        img.src = e.target.result;
+                    };
+                })($img[0]);
+                reader.readAsDataURL(file);
+            }
+        };
+        $input.on('change', handleFiles);
+    </script>
+</body>
+</html>

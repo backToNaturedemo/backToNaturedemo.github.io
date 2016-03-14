@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
-    <title>第三方cookie解决登录demo</title>
+    <title>畅言单点登录</title>
     <style>
         body {
             text-align: center;
@@ -38,7 +38,8 @@
                 },
                 success: function (data) {
                     if (data.user_id) {
-                        alert('登录成功');
+                        alert('登陆成功！');
+                        window.close();
                     }
                 }
             });

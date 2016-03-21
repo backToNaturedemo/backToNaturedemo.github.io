@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <!--<script src="http://apps.bdimg.com/libs/zepto/1.1.4/zepto.min.js"></script> -->
+    <script src="../lib/zepto-1.1.6.min.js"></script>
+    <style>
+        .test {
+            padding: 40px;
+            margin-top: 100px;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        <span id="pageX"></span>,<span id="pageY"></span>
+    </h1>
+    <button class="test">12314</button>
+    <script>
+
+        $(function () {
+            $('.test').on('touchend', function (e) {
+                var $this = $(this), offset = $(this).offset();
+                var pageX1 = offset.left, pageX2 = pageX1 + $this.width();
+                var pageY1 = offset.top, pageY2 = pageY1 + $this.height();
+                $('.test').one('touchmove', function (e) {
+                    if ()
+                });
+                if ((e.changedTouches[0].pageX >= pageX1 && e.changedTouches[0].pageX <= pageX2) && (e.changedTouches[0].pageY >= pageY1 && e.changedTouches[0].pageY <= pageY2)) {
+                    alert(22344);
+                }
+
+                console.log(pageX1, pageY1);
+                console.log(pageX2, pageY2);
+                console.log(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+            });
+        });
+    </script>
+</body>
+</html>

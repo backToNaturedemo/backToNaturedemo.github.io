@@ -17,23 +17,44 @@
         <span id="pageX"></span>,<span id="pageY"></span>
     </h1>
     <button class="test">12314</button>
+    <button class="test2">554442</button>
     <script>
 
         $(function () {
+            var event = $.Event('tap');
+            var isOuter;
+            $('.test').on('touchstart', function (e) {
+                e.preventDefault();
+                $('.test').on('touchmove.once', function (e) {
+                    e.preventDefault();
+                    var $this = $(this), offset = $(this).offset();
+                    var pageX1 = offset.left, pageX2 = pageX1 + $this.width();
+                    var pageY1 = offset.top, pageY2 = pageY1 + $this.height();
+                    $('#pageX').text(e.changedTouches[0].pageX);
+                    $('#pageY').text(e.changedTouches[0].pageY);
+                    if (e.changedTouches[0].pageX < pageX1 || e.changedTouches[0].pageX > pageX2 || e.changedTouches[0].pageY < pageY1 || e.changedTouches[0].pageY > pageY2) {
+                        isOuter = true;
+                        $('.test').off('touchmove.once');
+                    }
+                });
+            });
             $('.test').on('touchend', function (e) {
+                e.preventDefault();
                 var $this = $(this), offset = $(this).offset();
                 var pageX1 = offset.left, pageX2 = pageX1 + $this.width();
                 var pageY1 = offset.top, pageY2 = pageY1 + $this.height();
-                $('.test').one('touchmove', function (e) {
-                    if ()
-                });
+                
                 if ((e.changedTouches[0].pageX >= pageX1 && e.changedTouches[0].pageX <= pageX2) && (e.changedTouches[0].pageY >= pageY1 && e.changedTouches[0].pageY <= pageY2)) {
-                    alert(22344);
+                    if (!isOuter) {
+                        alert(22345);
+                        $(this).trigger(event);
+                    }
+                    $('.test').off('touchmove.once');
                 }
-
-                console.log(pageX1, pageY1);
-                console.log(pageX2, pageY2);
-                console.log(e.changedTouches[0].pageX, e.changedTouches[0].pageY);
+                isOuter = false;
+            });
+            $('test2').on('tap', function (e) {
+                console.log(0);
             });
         });
     </script>

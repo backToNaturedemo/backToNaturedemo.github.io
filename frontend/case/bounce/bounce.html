@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>快速回弹</title>
+    <meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <script src="../lib/zepto-1.1.6.min.js"></script>
+</head>
+<style>
+    .test {
+        height: 150vh;
+        width: 100%;
+        background: pink;
+    }
+    .test2 {
+        height: 100px;
+        overflow: scroll;
+        -webkit-overflow-scrolling: touch;
+        border: 1px solid #000;
+        background: #fff;
+    }
+</style>
+<body>
+    <div class="test">
+        <div class="test2">
+            <p class="one">1</p>
+            <p>2</p>
+            <p>3</p>
+            <p>4</p>
+            <p>5</p>
+            <p>6</p>
+            <p>7</p>
+            <p>8</p>
+        </div>
+        <h1 class="text"></h1>
+    </div>
+    <script>
+        $(function () {
+            $('.test2').on('touchmove', function (e) {
+                $('.text').text($('.one').offset().top);
+            });
+        });
+    </script>
+</body>
+</html>

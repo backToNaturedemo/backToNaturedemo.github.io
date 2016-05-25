@@ -44,3 +44,13 @@ if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|S
             } catch (e) { }
         }
     }
+
+$('#shareQQ').on('click', function () {
+    window.location.href = "mqqapi://share/to_fri?src_type=web&version=1&file_type=news&"
+    window.location.href = b("mqqapi://share/to_fri?src_type=web&version=1&file_type=news", {
+        share_id: "1101685683",
+        title: Base64.encode(f),
+        thirdAppDisplayName: Base64.encode("\u624B\u673A\u641C\u72D0"),
+        url: Base64.encode(d)
+    });
+});

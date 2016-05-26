@@ -1,3 +1,13 @@
+if (ucweb) {
+    // UC浏览器
+    return;
+}
+
+
+
+
+
+
 
 /*UC浏览器下 分享到微信朋友圈和微信好友*/
 if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|SAMSUNG|LG|NEC|TCL|Alcatel|BIRD|DBTEL|Dopod|PHILIPS|HAIER|LENOVO|MOT-|Nokia|SonyEricsson|SIE-|Amoi|ZTE/.test(navigator.userAgent))) {
@@ -46,7 +56,7 @@ if (/AppleWebKit.*Mobile/i.test(navigator.userAgent) || (/MIDP|SymbianOS|NOKIA|S
     }
 
 $('#shareQQ').on('click', function () {
-    window.location.href = "mqqapi://share/to_fri?src_type=web&version=1&file_type=news&"
+    // window.location.href = "mqqapi://share/to_fri?src_type=web&version=1&file_type=news&"
     window.location.href = b("mqqapi://share/to_fri?src_type=web&version=1&file_type=news", {
         share_id: "1101685683",
         title: Base64.encode(f),

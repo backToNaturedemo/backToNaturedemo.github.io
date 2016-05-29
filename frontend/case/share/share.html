@@ -5,19 +5,23 @@
     <meta name="description" content="demo">
 </head>
 <body>
-    <div id="nativeShare"></div>
+    <button id='weixin'>微信分享</button>
+    <script src="../lib/zepto-1.1.6.min.js"></script>
     <script src="../ua/ua.js"></script>
     <script src="./share.js"></script>
     <script>
+
         var config = {
             url:'http://changyan.sohu.com',
             title:'畅言',
             desc:'畅言官网',
-            img:'http://comment.bjcnc.img.sohucs.com/a_auto/pKS8yc8_jpg',
+            img:'http://comment.bjcnc.img.sohucs.com/a_auto/pKS8yc8.jpg',
             img_title:'美女头像',
             from:'畅言'
         };
-        Share(1, config);
+        $('#weixin').on('click', function () {
+            Share('weixin', config);
+        });
     </script>
 </body>
 </html>

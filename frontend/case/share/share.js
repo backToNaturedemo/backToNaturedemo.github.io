@@ -37,8 +37,7 @@
         util.loadJs(src, fn);
     };
 
-    var Share = function (platform_id, config) {
-        // 1: 微信，2: 微信朋友圈, 3: sina微博, 4: qq, 5: qzone
+    var Share = function (platform_id, config, backupUrl) {
         var isucBrowser = (!!window.ucweb && !!window.ucweb.startRequest) || (!!window.ucbrowser && !!window.ucbrowser.web_share),
             to_app, B, k;
         
@@ -57,10 +56,10 @@
                 }, 5E3);
             }
             if (typeof(window.ucweb) != "undefined") {
-                window.ucweb.startRequest("shell.page_share", [title, title, url, to_app, "", "@" + from, ""])
+                window.ucweb.startRequest("shell.page_share", [title, desc, url, to_app, '', "@" + from, ""])
             } else {
                 if (typeof(window.ucbrowser) != "undefined") {
-                    window.ucbrowser.web_share(title, title, url, to_app, "", "@" + from, '')
+                    window.ucbrowser.web_share(title, desc, url, to_app, "", "@" + from, '')
                 } else {
                 }
             }
@@ -83,7 +82,8 @@
                     window.qb.share(ah)
                 }
             });
-           
+        } else {
+            location.href = backupUrl;
         }
     };
 

@@ -39,7 +39,7 @@
                 success: function (data) {
                     if (data.user_id) {
                         alert('登陆成功！');
-                        window.close();
+                        history.back();
                     }
                 }
             });

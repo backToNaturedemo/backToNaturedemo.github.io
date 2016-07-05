@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0, maximum-scale=1.0,width=device-width">
+    <title>畅言-wap</title>
+    <style type="text/css">
+        html, body {
+            margin: 0;
+            font-size: 16px;
+        }
+        .wrapper {
+            border-bottom: solid 1px #cccccc;
+            margin: 30px 0;
+        }
+        .wrapper .item {
+            padding: 10px;
+            border-top: solid 1px #cccccc;
+        }
+        .wrapper .item .row1 {
+            display: inline-block;
+            width: 180px;
+        }
+        .long_height {
+            height: 800px;
+            width: 100%;
+            background: pink;
+        }
+    </style>
+</head>
+<body>
+<div class="long_height"></div>
+<div><a href="http://changyan.kuaizhan.com/">xxxxxxxxxxxxxxxxxxxxxxxx</a></div>
+<div><a href="http://changyan.kuaizhan.com/">xxxxxxxxxxxxxxxxxxxxxxxx</a></div>
+<div><a href="http://changyan.kuaizhan.com/">xxxxxxxxxxxxxxxxxxxxxxxx</a></div>
+<div><a href="http://changyan.kuaizhan.com/">xxxxxxxxxxxxxxxxxxxxxxxx</a></div>
+<div><a href="http://changyan.kuaizhan.com/">xxxxxxxxxxxxxxxxxxxxxxxx</a></div>
+<div><a href="http://changyan.kuaizhan.com/">xxxxxxxxxxxxxxxxxxxxxxxx</a></div>
+<div><a href="http://changyan.kuaizhan.com/">xxxxxxxxxxxxxxxxxxxxxxxx</a></div>
+
+<div id="wrapper" class="wrapper">
+</div>
+    
+
+<script>
+var timer = {
+    sid: function (key) {
+        this['t-' + key] = +new Date();
+    },
+    log: function (name, k1, k2) {
+        var ts = this['t-' + k1] - this['t-' + k2];
+
+        var html = '\
+            <div class="item">\
+                <span class="row1">' + name + '</span>\
+                <span>' + ts + 'ms</span>\
+            </div>\
+        ';
+        
+        var el = document.createElement('div');
+        el.innerHTML = html;
+        document.getElementById('wrapper').appendChild(el);
+    }
+};
+timer.sid('START');
+window.changyanWapDebugFn = function (events) {
+    events.on('CUSTOM_EVT_TOPIC_LOAD', function (data) {
+        timer.sid('TOPIC_LOAD');
+        timer.log('数据载入', 'TOPIC_LOAD', 'START');
+    });
+    events.on('CUSTOM_EVT_CBOX_RENDER', function (data) {
+        timer.sid('CBOX_RENDER');
+        timer.log('评论框渲染', 'CBOX_RENDER', 'START');
+    });
+    events.on('CUSTOM_EVT_COMMENTS_LIST_RENDER', function (data) {
+        timer.sid('COMMENTS_LIST_RENDER');
+        timer.log('评论列表渲染', 'COMMENTS_LIST_RENDER', 'START');
+    });
+};
+</script>
+
+
+
+<div id="SOHUCS" sid="yemianzai-changyan-0001"></div>
+<div class="long_height"></div>
+
+<script>
+ var SOHUZ = {
+                page: {site_id: "8596643076", site_name: "成都家佳宝科技", site_url: "http://jiajiabao.kuaizhan.com", page_id: "7617883993", page_title: "评论", page_type: "2", index_url: "/", is_index_page: false, is_imported_post: false, source_page_id: 0, post_zan_count: 0},
+                share: {title: "评论", desc: "", pic: ""}
+            };
+    (function (w, z) {
+        if (z && z.page) {
+            var e = document.getElementById("SOHUCS");
+            if (!e.getAttribute('sid') && z.page.page_id) {
+                e.setAttribute('sid', z.page.page_id);
+            }
+        }
+        w._config = {
+            'mobile': {
+                'isvLoginUrl': 'http://passport.kuaizhan.com/main/login',
+                'isvLoginIcon': 'http://kzcdn.itc.cn/res/skin/images/logosq.png'
+            },
+            'sso': {
+                'ssoType': 2,
+                'onlySSO': true,
+                'isvLogin': 'http://jiajiabao.kuaizhan.com' + '/auth/api/cy/login',
+                'isvLogout': 'http://jiajiabao.kuaizhan.com' + '/auth/api/cy/logout',
+                'isvUserInfo': 'http://jiajiabao.kuaizhan.com' + '/auth/api/cy/me'
+            }
+        };
+        var appid = 'cysbxHTsp', conf = 'prod_0981230480e9ed557f942c731961bf57',width = window.innerWidth || document.documentElement.clientWidth;
+        if (width < 960) {
+            window.document.write("<script id=\"changyan_mobile_js\" charset=\"utf-8\" type=\"text/javascript\" src=\"http://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=" + appid + "&conf=" + conf + "\"><\/script>");
+        } else {
+            var loadJs = function(d, a){
+                var c = document.getElementsByTagName("head")[0]||document.head||document.documentElement;
+                var b = document.createElement("script");
+                b.setAttribute("type","text/javascript");
+                b.setAttribute("charset","UTF-8");
+                b.setAttribute("src", d);
+                if (typeof a=== "function") {
+                    if (window.attachEvent) {
+                        b.onreadystatechange = function() {
+                            var e = b.readyState;
+                            if (e === "loaded" || e === "complete") {
+                                b.onreadystatechange=null;
+                                a()
+                            }
+                        }
+                    } else {
+                        b.onload = a
+                    }
+                }
+            c.appendChild(b)
+        };
+        loadJs("http://changyan.sohu.com/upload/changyan.js",function(){
+            window.changyan.api.config({appid: appid, conf: conf})});
+        }
+    })(window, SOHUZ);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>毛玻璃效果demo</title>
+<style type="text/css">
+    img {
+        width: 100%;
+        height: 100%;
+        /*visibility: hidden;*/
+    }
+    .img-w {
+        width: 300px;
+        height: 300px;
+    }
+    #canvas {
+        width: 300px;
+        height: 300px;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .wrapper {
+        position: relative;
+        width: 300px;
+        height: 300px;
+    }
+</style>
+</head>
+<body>
+    <div class="wrapper">
+        <div class="img-w">
+            <img id="pic" src="http://0d077ef9e74d8.cdn.sohucs.com/a_auto/pKS8yc8.jpg">
+        </div>
+        <canvas id="canvas" width="300" height="300"></canvas>
+    </div>
+    <script src="./blur.js"></script>
+    <script>
+        var isSupportFilter = function () {
+            var t_dom = new Image();
+            t_dom.style.cssText = '-webkit-filter: blur(10px);filter: blur(10px);';
+            return !!t_dom.style.cssText;
+        };
+
+        if (isSupportFilter()) {
+            document.getElementById('pic').style.cssText = '-webkit-filter: blur(20px);filter: blur(20px);';
+        } else {
+            var imgUrl = document.getElementById('pic').src;
+            stackBlurImage(imgUrl, 'canvas', 20, true);
+        }
+        
+    </script>
+</body>
+</html>

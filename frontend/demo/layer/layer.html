@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html>
+     <head>
+       <style type="text/css">
+        canvas, video, div {
+            -webkit-transform: rotateY(30deg) rotateX(-45deg);
+        }
+        video {
+            opacity: 0.1
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <video src="http://www.w3school.com.cn/i/movie.ogg"></video>
+        <div>
+            <canvas id="2d"></canvas>
+            <canvas id="3d"></canvas>
+        </div>
+        <script type="text/javascript">
+            var size = 300;
+
+            // canvas 2D 绘图
+            var ctx2D = document.getElementById('2d').getContext('2d');
+            ctx2D.canvas.width = size;
+            ctx2D.canvas.height = size;
+            ctx2D.fillStyle = 'rgba(0,192,192,80)';
+            ctx2D.fillRect(0, 0, 200 ,200);
+
+            // Canvas 3d, webGL绘图
+            var ctx3D = document.getElementById('3d').getContext('experimental-webgl');
+            ctx3D.canvas.width = size;
+            ctx3D.canvas.height = size;
+            ctx3D.clearColor(0, 192, 192, 80);
+            ctx3D.clear(ctx3D.COLOR_BUFFER_BIT);
+        </script>
+    </body>
+</html>

@@ -3,21 +3,131 @@
     <meta charset="utf-8"/>
     <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0;" name="viewport" />
     <style>
-        ul li:active {
-            -webkit-transition-duration: 0s; 
-            -moz-transition-duration: 0s; 
-            transition-duration: 0ms; 
-            background-color: red;
+        * {
+            margin: 0;
+            padding: 0;
         }
+        .banner {
+            background: #38f;
+            width: 100%;
+            height: 40px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 40px;
+        }
+        .container {
+            text-align: center;
+        }
+        .item {
+            width: 160px;
+            height: 80px;
+            background: #699f00;
+            line-height: 80px;
+            font-size: 20px;
+            color: #fff;
+            margin: 10px auto;
+        }
+    
+        .highlight:active {
+            opacity: 0.6;
+        }
+
+        .animation {
+            -webkit-transition: -webkit-transform .3s ease-in-out;
+            transition: transform .3s ease-in-out;
+        }
+
+        .pseudo .animation:active {
+            -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+        }
+
+        .add .normal.high {
+            opacity: 0.6;
+        }
+
+        .add .anim {
+            -webkit-transition: -webkit-transform .3s ease-in-out;
+            transition: transform .3s ease-in-out;
+        }
+
+        .add .anim.high {
+            -webkit-transform: scale(1.5);
+            transform: scale(1.5);
+        }
+
     </style>
     <script>
         document.addEventListener('touchstart', function(){});
     </script>
 </head>
 <body>
-    <ul>
-        <li>工作</li>
-        <li>审批</li>
-    </ul>
+    <div class="banner">:active</div>
+    <div class="container pseudo">
+        <div class="item highlight">highlight</div>
+        <div class="item animation">animation</div>
+    </div>
+    <div class="banner">addClass & removeClass </div>
+    <div class="container add">
+        <div class="item touch normal">highlight</div>
+        <div class="item touch anim">animation</div>
+    </div>
+    
+    <div class="banner">note</div>
+    <h1>安卓手机可以很明显地感觉使用active伪类会有延时</h1>
+    <script>
+        // 触摸高亮
+        (function () {
+            var container = window, bindClass = 'touch', highLightClass = 'high';
+            var eventData = {};
+
+            var hasClass = function (elem, cls){
+                cls = cls || '';
+                if(cls.replace(/\s/g, '').length == 0) return false;
+                return new RegExp(' ' + cls + ' ').test(' ' + elem.className + ' ');
+            };
+
+            var addClass = function (elem, cls){
+                if(!hasClass(elem, cls)){
+                    elem.className += ' ' + cls;
+                }
+            };
+
+            var removeClass = function (elem, cls){
+                if(hasClass(elem, cls)){
+                    var newClass = ' ' + elem.className.replace(/[\t\r\n]/g, '') + ' ';
+                    while(newClass.indexOf(' ' + cls + ' ') >= 0){
+                        newClass = newClass.replace(' ' + cls + ' ', ' ');
+                    }
+                    elem.className = newClass.replace(/^\s+|\s+$/g, '');
+                }
+            };
+
+            container.addEventListener('touchstart', function (e) {
+                eventData.event = e.changedTouches ? e.changedTouches[0] : e;
+                eventData.startY = eventData.event.pageY;
+                eventData.startX = eventData.event.pageX;
+                if (hasClass(e.target, bindClass)) {
+                    addClass(e.target, highLightClass);
+                }
+            });
+
+            container.addEventListener('touchmove', function (e) {
+                eventData.event = e.changedTouches ? e.changedTouches[0] : e;
+                if ((eventData.event.pageY !== eventData.startY || eventData.event.pageX !== eventData.startX) && hasClass(e.target, bindClass)) {
+                    removeClass(e.target, highLightClass);
+                }
+            });
+
+            container.addEventListener('touchend', function (e) {
+                eventData.event = e.changedTouches ? e.changedTouches[0] : e;
+                if (hasClass(e.target, bindClass)) {
+                    removeClass(e.target, highLightClass);
+                }
+            });
+        }());
+    </script>
 </body>
 <html>

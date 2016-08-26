@@ -103,7 +103,7 @@
     <script>
         // 触摸高亮
         (function () {
-            var container = window, bindClass = 'touch', highLightClass = 'high';
+            var container = window.document.querySelector('.add'), bindClass = 'touch', highLightClass = 'high';
             var eventData = {};
 
             var hasClass = function (elem, cls){

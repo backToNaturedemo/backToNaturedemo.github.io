@@ -58,25 +58,48 @@
             transform: scale(1.2);
         }
 
+        .disabled .normal:active {
+            opacity: 0.6;
+        }
+
+        .disabled .anim {
+            -webkit-transition: -webkit-transform .1s ease-in-out;
+            transition: transform .1s ease-in-out;
+        }
+
+        .disabled .anim:active {
+            -webkit-transform: scale(1.2);
+            transform: scale(1.2);
+        }
+
     </style>
-    <script>
-        document.addEventListener('touchstart', function(){});
-    </script>
 </head>
 <body>
-    <div class="banner">:active</div>
-    <div class="container pseudo">
-        <div class="item highlight">highlight</div>
-        <div class="item animation">animation</div>
+    <div class="activeTouch">
+        <div class="banner">:active with binding touchstart</div>
+        <div class="container pseudo">
+            <div class="item highlight">highlight</div>
+            <div class="item animation">animation</div>
+        </div>
+        <div class="banner">addClass & removeClass </div>
+        <div class="container add">
+            <div class="item touch normal">highlight</div>
+            <div class="item touch anim">animation</div>
+        </div>
     </div>
-    <div class="banner">addClass & removeClass </div>
-    <div class="container add">
-        <div class="item touch normal">highlight</div>
-        <div class="item touch anim">animation</div>
+    <div class="disableTouch">
+        <div class="banner">:active without binding touchstart</div>
+        <div class="container disabled">
+            <div class="item touch normal">highlight</div>
+            <div class="item touch anim">animation</div>
+        </div>
     </div>
     
     <div class="banner">note</div>
     <h3>安卓手机可以很明显地感觉使用active伪类会有延时</h3>
+    <script>
+        document.querySelector('.activeTouch').addEventListener('touchstart', function(){});
+    </script>
     <script>
         // 触摸高亮
         (function () {

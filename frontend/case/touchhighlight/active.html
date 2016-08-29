@@ -144,6 +144,13 @@
                 }
             });
 
+            container.addEventListener('touchcancel', function (e) {
+                eventData.event = e.changedTouches ? e.changedTouches[0] : e;
+                if (hasClass(e.target, bindClass)) {
+                    removeClass(e.target, highLightClass);
+                }
+            });
+
             container.addEventListener('touchend', function (e) {
                 eventData.event = e.changedTouches ? e.changedTouches[0] : e;
                 if (hasClass(e.target, bindClass)) {
